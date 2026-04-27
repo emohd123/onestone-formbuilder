@@ -1,0 +1,82 @@
+<!--footer start here-->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-row row">
+            <div class=" col-6 footer-link align-center text-center">
+                <div class="footer-widget align-center text-center">
+                    <div class="footer-logo">
+                        {{--                    <img src="{{ Storage::url(setting('app_logo')) ? Storage::url('app-logo/app-logo.png') : asset('assets/images/app-logo.png') }}"--}}
+                        {{--                         alt="footer-logo" class="footer-light-logo">--}}
+                        <img src="{{ asset('assets/img/logo.png') }}"
+                             alt="footer-logo" class="footer-dark-logo">
+                        {{--                    <img src="{{ Utility::logoSetting('app_dark_logo') ? Storage::url('app-logo/app-dark-logo.png') : asset('assets/images/app-dark-logo.png') }}"--}}
+                        {{--                         alt="footer-logo" class="footer-dark-logo">--}}
+                    </div>
+                    <p class="text-left" style="margin-left: 30px">
+                        When you are attending multiple customers, a lot of time is spent asking customers the same set of initial questions in Google.
+                        <br> With Form Builder, you can ask these questions in one go and save time.
+                    </p>
+
+                    <br>
+                    <div class="social-icons-container">
+                        <a href="https://www.facebook.com/onestonead" class="social-icon">
+                            <img src="{{ asset('assets/img/fb.png') }}" alt="Facebook Icon">
+                        </a>
+                        <a href="https://www.instagram.com/onestonead/" class="social-icon">
+                            <img src="{{ asset('assets/img/insta.png') }}" alt="Instagram Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            @php
+                $footerMainMenus = App\Models\FooterSetting::where('parent_id', 0)->get();
+            @endphp
+            @if (!empty($footerMainMenus))
+                @foreach ($footerMainMenus as $footerMainMenu)
+                    <div class="footer-col col-md-6">
+                        <div class="footer-widget">
+                            <h3>{{ $footerMainMenu->menu }}</h3>
+                            @php
+                                $subMenus = App\Models\FooterSetting::where('parent_id', $footerMainMenu->id)->get();
+                            @endphp
+                            <ul>
+                                @foreach ($subMenus as $subMenu)
+                                    @php
+                                        $page = App\Models\PageSetting::find($subMenu->page_id);
+                                    @endphp
+                                @if($page)
+                                    <li>
+                                        <a @if ($page->type == 'link') ?  href="{{ $page->page_url }}"  @else  href="{{ route('description.page', $subMenu->slug) }}" @endif
+                                        tabindex="0">{{ $page->title }}
+                                        </a>
+                                    </li>
+                                    @endif
+                                @endforeach
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                @endforeach
+            @endif
+            <div class="img-fluid">
+                <img src="{{ asset('assets/img/secure.png') }}" alt="secure.png">
+
+            </div>
+        </div>
+
+    </div>
+    <div style="width: 100%; height: 100%; background: #EC367E">
+        <div class="footer-bottom" style="width: 100%; height: 100%; background: #EC367E">
+            <div class="row align-items-center">
+                <div class="col-12 text-center text-white" >
+                    <p>© {{ date('Y') }} {{ config('app.name') }}.  Powered by <a href="https://aariztech.com/" target="_blank" style="color: #eceefe">Aariz Technologies </a></p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--footer end here-->

@@ -1,0 +1,12 @@
+[20-May-2025 14:20:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/onesgcyc/app.onestoneads.com/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/onesgcyc/app.onestoneads.com/config/cache.php on line 18
+[20-May-2025 14:20:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/onesgcyc/app.onestoneads.com/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/onesgcyc/app.onestoneads.com/config/cache.php on line 18
+[18-Jun-2025 21:46:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/onesgcyc/app.onestoneads.com/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/onesgcyc/app.onestoneads.com/config/mail.php on line 16
