@@ -72,7 +72,7 @@
         <div class="footer-bottom" style="width: 100%; height: 100%; background: #EC367E">
             <div class="row align-items-center">
                 <div class="col-12 text-center text-white" >
-                    <p>© {{ date('Y') }} {{ config('app.name') }}.  Powered by <a href="https://aariztech.com/" target="_blank" style="color: #eceefe">Aariz Technologies </a></p>
+                    <p>&copy; {{ date('Y') }} {{ config('app.name') }}.  Powered by <a href="https://aariztech.com/" target="_blank" style="color: #eceefe">Aariz Technologies </a></p>
                     <br>
                 </div>
             </div>
