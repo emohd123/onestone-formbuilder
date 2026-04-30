@@ -19,7 +19,7 @@
 
                     <br>
                     <div class="social-icons-container">
-                        <a href="https://www.instagram.com/formbuilder.onestone/" class="social-icon">
+                        <a href="#" class="social-icon">
                             <img src="{{ asset('assets/img/fb.png') }}" alt="Facebook Icon">
                         </a>
                         <a href="https://www.instagram.com/formbuilder.onestone/" class="social-icon">
