@@ -208,8 +208,11 @@ mountScrollWorld(document.getElementById('world'), {"brand":{"name":"OneStone Fo
     +   'background:linear-gradient(90deg,var(--sw-bg) 0%,color-mix(in srgb,var(--sw-bg) 94%,transparent) 34%,color-mix(in srgb,var(--sw-bg) 66%,transparent) 60%,transparent 100%)!important;}'
     // The engine writes an inline transform each frame, which clobbers its own
     // translateY(-50%) centering — with our taller copy the title fell off-screen.
-    // Anchor the copy near the bottom-left so the whole block is always in view.
-    + '.sw-root .sw-copy{position:relative;top:auto!important;bottom:clamp(84px,15vh,150px)!important;'
+    // Anchor the copy to the bottom-left of the fixed copy layer so the whole block
+    // stays in view AND clears the top-bar logo. Must be position:absolute (not
+    // relative) — relative offsets `bottom` up from the static top, which rode the
+    // title up under the brand logo; absolute anchors it to the layer's bottom.
+    + '.sw-root .sw-copy{position:absolute;top:auto!important;bottom:clamp(84px,15vh,150px)!important;'
     +   'left:clamp(20px,5vw,64px);width:min(44vw,520px);}'
     + '.sw-root .sw-copy::before{content:"";position:absolute;z-index:-1;inset:-38px -110px -38px -80px;'
     +   'background:radial-gradient(130% 125% at 22% 50%, color-mix(in srgb,var(--sw-bg) 97%,transparent) 0%, color-mix(in srgb,var(--sw-bg) 82%,transparent) 44%, transparent 74%);'
