@@ -175,6 +175,10 @@ function mountScrollWorld(container, config) {
 
   function layout() {
     vh = window.innerHeight;
+    // Guard against an early mount where the viewport hasn't been measured yet
+    // (innerHeight === 0). Sizing the track to 0 there kills the whole flight
+    // runway; retry next frame until the browser reports a real height.
+    if (!vh) { requestAnimationFrame(layout); return; }
     laidOutW = window.innerWidth;
     stageX = window.innerWidth > 860 ? 4 : 0;
     let off = 0;
