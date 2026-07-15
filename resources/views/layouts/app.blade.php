@@ -65,7 +65,7 @@
 .login-media-col::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.24),transparent 62%);top:6%;left:50%;transform:translateX(-50%);filter:blur(6px);pointer-events:none;z-index:0;}
 .login-media-col::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;filter:blur(22px);background:radial-gradient(240px 240px at 6% 6%,rgba(255,126,182,.5),transparent 60%),radial-gradient(260px 260px at 95% 96%,rgba(55,208,230,.5),transparent 60%);}
 .login-media-inner{position:relative !important;z-index:2 !important;}
-.login-media-inner img{filter:drop-shadow(0 24px 40px rgba(20,10,60,.42));}
+.login-media-inner img{border-radius:22px;max-width:430px;width:100%;box-shadow:0 26px 54px rgba(20,10,60,.4);border:1px solid rgba(255,255,255,.28);}
 </style>
 
 </head>
@@ -218,7 +218,7 @@
                             <img
                                 src="{{ Utility::getsettings('login_image')
                                     ? Storage::url(Utility::getsettings('login_image'))
-                                    : asset('assets/images/auth/img-auth-3.svg') }}" />
+                                    : asset('scroll-world/assets/auth-clay.webp') }}" />
                             <h3>
                                 {{ Utility::getsettings('login_name') ? Utility::getsettings('login_name') : __('“Attention is the new currency”') }}
                             </h3>
