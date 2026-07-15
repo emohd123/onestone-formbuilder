@@ -57,6 +57,15 @@
    the header. Give it enough top clearance to sit below the fixed header. */
 .login-content-inner{padding-top:165px !important;}
 @media (max-width:991px){.login-content-inner{padding-top:200px !important;}}
+
+/* Auth side panel enhancement: keep the same illustration but upgrade the flat
+   purple to a brand purple->blue gradient with a soft glow, subtle pink/cyan
+   corner blobs, and a drop shadow on the illustration. */
+.login-media-col{background:linear-gradient(150deg,#5B52E0 0%,#7A54C6 52%,#4F9BE0 100%) !important;position:relative !important;overflow:hidden !important;}
+.login-media-col::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.24),transparent 62%);top:6%;left:50%;transform:translateX(-50%);filter:blur(6px);pointer-events:none;z-index:0;}
+.login-media-col::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;filter:blur(22px);background:radial-gradient(240px 240px at 6% 6%,rgba(255,126,182,.5),transparent 60%),radial-gradient(260px 260px at 95% 96%,rgba(55,208,230,.5),transparent 60%);}
+.login-media-inner{position:relative !important;z-index:2 !important;}
+.login-media-inner img{filter:drop-shadow(0 24px 40px rgba(20,10,60,.42));}
 </style>
 
 </head>
