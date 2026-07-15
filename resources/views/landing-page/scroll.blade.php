@@ -64,6 +64,12 @@
   .os-app .qr{background:#26272F;border:1px solid #34353F;border-radius:20px;padding:40px 30px;text-align:center;}
   .os-badge{display:inline-block;font-size:.78rem;color:#3ED6B5;border:1px solid #2f4f45;background:rgba(62,214,181,.08);padding:5px 13px;border-radius:999px;margin-bottom:16px;}
   .os-tpl-btn{margin-top:auto;}
+  .os-tpl-thumb{height:132px;border-radius:14px;margin:-2px 0 16px;display:flex;align-items:center;justify-content:center;border:1px solid #34353F;position:relative;overflow:hidden;}
+  .os-tpl-thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(80% 70% at 50% 28%,rgba(255,255,255,.07),transparent 72%);pointer-events:none;}
+  .os-tpl-thumb svg{width:76px;height:76px;position:relative;filter:drop-shadow(0 10px 18px rgba(0,0,0,.42));}
+  .os-tpl-thumb.t-travel{background:linear-gradient(135deg,rgba(62,147,212,.30),rgba(38,39,47,.65));}
+  .os-tpl-thumb.t-contact{background:linear-gradient(135deg,rgba(224,96,142,.30),rgba(38,39,47,.65));}
+  .os-tpl-thumb.t-feedback{background:linear-gradient(135deg,rgba(155,69,166,.32),rgba(38,39,47,.65));}
   .os-faq details{background:#26272F;border:1px solid #34353F;border-radius:14px;padding:0 22px;margin-bottom:12px;}
   .os-faq summary{cursor:pointer;list-style:none;padding:19px 0;font-weight:700;color:#F0F0F4;display:flex;justify-content:space-between;align-items:center;gap:16px;}
   .os-faq summary::-webkit-details-marker{display:none;}
@@ -127,9 +133,9 @@
     <h2 class="os-h2">Start from a template</h2>
     <p class="os-sub">Choose a ready-made form for bookings, contact requests, or feedback, then customize it in minutes.</p>
     <div class="os-grid">
-      <div class="os-card"><h3>Travel Booking</h3><p>Capture travel requirements from your customers in one quick form.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create travel form</a></div>
-      <div class="os-card"><h3>Contact Form</h3><p>A classic contact form to collect general inquiries from anyone.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create contact form</a></div>
-      <div class="os-card"><h3>Customer Feedback</h3><p>Collect feedback about your customers' experience and ratings.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create feedback form</a></div>
+      <div class="os-card"><div class="os-tpl-thumb t-travel"><svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9ad4ff"/><stop offset="1" stop-color="#3E93D4"/></linearGradient></defs><path d="M88 8 44 52M88 8 60 88 44 52 8 36Z" stroke="url(#gt)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></svg></div><h3>Travel Booking</h3><p>Capture travel requirements from your customers in one quick form.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create travel form</a></div>
+      <div class="os-card"><div class="os-tpl-thumb t-contact"><svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb0cd"/><stop offset="1" stop-color="#E0608E"/></linearGradient></defs><rect x="10" y="22" width="76" height="54" rx="11" stroke="url(#gc)" stroke-width="5"/><path d="M15 30 48 54 81 30" stroke="url(#gc)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Contact Form</h3><p>A classic contact form to collect general inquiries from anyone.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create contact form</a></div>
+      <div class="os-card"><div class="os-tpl-thumb t-feedback"><svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d3a0ea"/><stop offset="1" stop-color="#9B45A6"/></linearGradient></defs><path d="M48 10 60 37 89 40 67 60 73 89 48 74 23 89 29 60 7 40 36 37Z" fill="url(#gf)" stroke="url(#gf)" stroke-width="4" stroke-linejoin="round"/></svg></div><h3>Customer Feedback</h3><p>Collect feedback about your customers' experience and ratings.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create feedback form</a></div>
     </div>
   </section>
 <section id="pricing">
