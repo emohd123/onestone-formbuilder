@@ -279,7 +279,17 @@ mountScrollWorld(document.getElementById('world'), {"brand":{"name":"OneStone Fo
     + '.sw-root .sw-copy__body{line-height:1.62;max-width:42ch;font-weight:500;'
     +   'color:color-mix(in srgb,var(--sw-ink) 90%,#000);text-shadow:0 1px 14px var(--sw-bg);}'
     + '.sw-root .sw-copy__num{letter-spacing:.2em;}'
-    + '.sw-root .sw-nav__item{font-weight:600;}';
+    + '.sw-root .sw-nav__item{font-weight:600;}'
+    // Pull the camera back: the 1080p clips at object-fit:cover felt too close/huge.
+    // Scale the media down AND feather its edges with a mask so the media melts
+    // into the cream page bg — no hard rectangle edges, softer crossfades.
+    // Desktop only — phones need the full crop.
+    + '@media(min-width:861px){'
+    +   '.sw-root .sw-scene__video,.sw-root .sw-scene__still{'
+    +     'transform:scale(.85);transform-origin:50% 45%;'
+    +     '-webkit-mask-image:radial-gradient(115% 105% at 50% 45%, #000 58%, transparent 92%);'
+    +     'mask-image:radial-gradient(115% 105% at 50% 45%, #000 58%, transparent 92%);}'
+    + '}';
   document.head.appendChild(ov);
 })();
 </script></body></html>
