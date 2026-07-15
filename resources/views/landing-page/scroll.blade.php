@@ -202,6 +202,24 @@ mountScrollWorld(document.getElementById('world'), {"brand":{"name":"OneStone Fo
   window.addEventListener('scroll', sync, { passive: true });
   sync();
 })();
+// Add a "Sign in" link next to the "Start free" CTA in the top bar. Group the
+// two on the right so the centered nav stays put. Colour uses --sw-ink so it
+// flips light/dark with the top bar just like the logo above.
+(function(){
+  var cta = document.querySelector('.sw-topcta');
+  if (!cta) return;
+  var grp = document.createElement('div');
+  grp.style.cssText = 'display:flex;align-items:center;gap:18px;';
+  var si = document.createElement('a');
+  si.href = 'https://app.onestoneads.com/login';
+  si.textContent = 'Sign in';
+  si.style.cssText = 'color:var(--sw-ink);text-decoration:none;font-weight:600;font-size:.9rem;white-space:nowrap;transition:opacity .2s;';
+  si.addEventListener('mouseenter', function(){ si.style.opacity = '.7'; });
+  si.addEventListener('mouseleave', function(){ si.style.opacity = '1'; });
+  cta.parentNode.insertBefore(grp, cta);
+  grp.appendChild(si);
+  grp.appendChild(cta);
+})();
 // Typography polish + always-vivid top CTA — injected AFTER the engine CSS so it wins.
 (function(){
   var ov = document.createElement('style');
