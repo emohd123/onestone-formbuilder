@@ -56,7 +56,7 @@
    (90px) is too short, so the "Sign Up" / "Sign In" title rendered behind
    the header. Give it enough top clearance to sit below the fixed header. */
 .login-content-inner{padding-top:165px !important;}
-@media (max-width:991px){.login-content-inner{padding-top:200px !important;}}
+@media (max-width:991px){.login-content-inner{padding-top:120px !important;}}
 
 /* Auth side panel enhancement: keep the same illustration but upgrade the flat
    purple to a brand purple->blue gradient with a soft glow, subtle pink/cyan

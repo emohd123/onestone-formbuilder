@@ -238,6 +238,12 @@ mountScrollWorld(document.getElementById('world'), {"brand":{"name":"OneStone Fo
     // title up under the brand logo; absolute anchors it to the layer's bottom.
     + '.sw-root .sw-copy{position:absolute;top:auto!important;bottom:clamp(84px,15vh,150px)!important;'
     +   'left:clamp(20px,5vw,64px);width:min(44vw,520px);}'
+    // Mobile: the narrow 44vw column wraps the title badly. Go full-width and use a
+    // bottom-up scrim (like the engine's own mobile treatment) so copy stays readable.
+    + '@media(max-width:860px){.sw-root .sw-copy{width:auto!important;right:clamp(20px,5vw,64px)!important;'
+    +   'bottom:clamp(72px,11vh,116px)!important;}'
+    +   '.sw-root .sw-copylayer::before{width:100%!important;height:64%!important;top:auto!important;bottom:0!important;'
+    +   'background:linear-gradient(0deg,var(--sw-bg) 12%,color-mix(in srgb,var(--sw-bg) 66%,transparent) 50%,transparent 100%)!important;}}'
     + '.sw-root .sw-copy::before{content:"";position:absolute;z-index:-1;inset:-38px -110px -38px -80px;'
     +   'background:radial-gradient(130% 125% at 22% 50%, color-mix(in srgb,var(--sw-bg) 97%,transparent) 0%, color-mix(in srgb,var(--sw-bg) 82%,transparent) 44%, transparent 74%);'
     +   'filter:blur(4px);pointer-events:none;}'
