@@ -82,6 +82,32 @@
   .os-final .os-btn{display:inline-block;margin:0 auto;padding:15px 36px;}
   @media(max-width:760px){.os-app{grid-template-columns:1fr;}}
 
+  /* ---- polish: tighter rhythm + card hover lift ---- */
+  .os-after section{padding:clamp(50px,7vw,88px) clamp(20px,5vw,48px);}
+  .os-card{transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;}
+  .os-card:hover{transform:translateY(-4px);border-color:#4a4b57;box-shadow:0 20px 44px rgba(0,0,0,.42);}
+
+  /* ---- AI section spotlight — make the flagship AI features unmistakable ---- */
+  #ai{position:relative;}
+  #ai::before{content:"";position:absolute;inset:clamp(16px,3vw,32px);border-radius:28px;pointer-events:none;
+    background:radial-gradient(120% 90% at 0% 0%,rgba(224,54,126,.12),transparent 55%),
+               radial-gradient(120% 90% at 100% 100%,rgba(62,147,212,.12),transparent 55%);
+    border:1px solid #2c2d38;}
+  #ai>*{position:relative;z-index:1;}
+  /* Turn the AI eyebrow into a glowing gradient pill badge */
+  #ai .os-eyebrow{display:inline-flex;align-items:center;gap:7px;-webkit-text-fill-color:#fff;color:#fff;
+    -webkit-background-clip:border-box;background-clip:border-box;background:var(--brand-grad);
+    padding:7px 15px;border-radius:999px;box-shadow:0 8px 22px rgba(155,69,166,.42);}
+  #ai .os-h2{font-size:clamp(2.1rem,4.3vw,3.15rem);}
+  /* Distinct, vivid icon tile per AI capability */
+  #ai .os-card .dot{width:42px;height:42px;border-radius:12px;font-size:1.2rem;color:#fff;box-shadow:0 8px 18px rgba(0,0,0,.35);}
+  #ai .os-grid .os-card:nth-child(1) .dot{background:linear-gradient(135deg,#3E93D4,#5AB0F0);}
+  #ai .os-grid .os-card:nth-child(2) .dot{background:linear-gradient(135deg,#E0608E,#F49AC0);}
+  #ai .os-grid .os-card:nth-child(3) .dot{background:linear-gradient(135deg,#9B45A6,#C77BD6);}
+  #ai .os-grid .os-card:nth-child(4) .dot{background:linear-gradient(135deg,#2FB8A0,#3ED6B5);}
+  #ai .os-card{background:#232430;border-color:#383946;}
+  #ai .os-card h3{font-size:1.08rem;}
+
 </style>
 <div id="top"></div>
 <div id="world"></div>
