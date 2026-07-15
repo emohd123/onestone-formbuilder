@@ -20,10 +20,14 @@ class LandingPageController extends Controller
 {
 
     public function landingPageHome(){
-        $faqs = Faq::all();
-        $plans = Plan::all();
-        $testimonials                   = Testimonial::where('status', 1)->get();
-        return view('landing-page.index', compact('faqs', 'plans' , 'testimonials'));
+        // Scroll-world cinematic homepage (self-contained view; assets in public/scroll-world/).
+        return view('landing-page.scroll');
+
+        // --- Previous homepage (rollback: delete the return above to restore) ---
+        // $faqs = Faq::all();
+        // $plans = Plan::all();
+        // $testimonials                   = Testimonial::where('status', 1)->get();
+        // return view('landing-page.index', compact('faqs', 'plans' , 'testimonials'));
     }
     private function updateSettings($input)
     {
