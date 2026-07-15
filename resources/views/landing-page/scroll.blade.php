@@ -92,22 +92,7 @@
     </div>
     <p class="os-note">Available on any <b>Pro plan</b>.</p>
   </section>
-  <section id="pricing">
-    <p class="os-eyebrow">Simple, flexible pricing</p>
-    <h2 class="os-h2">Plans that scale with you</h2>
-    <p class="os-sub">Transparent pricing with no hidden charges. Start free, then upgrade when your forms grow.</p>
-    <div class="os-plans">
-      <div class="os-plan"><h3>Free</h3><div class="os-price">$0 <span>/lifetime</span></div><div class="os-per">Lifetime access</div>
-        <ul><li>1 form</li><li>Multi-step forms</li><li>Shareable survey links</li><li>Unlimited submissions</li></ul>
-        <a class="os-btn ghost" href="https://app.onestoneads.com/register">Get started</a></div>
-      <div class="os-plan pop"><div class="badge">MOST POPULAR</div><h3>Pro — Monthly</h3><div class="os-price">$9.99 <span>/mo</span></div><div class="os-per">1 month duration</div>
-        <ul><li>AI: build, scan, translate &amp; insights</li><li>Unlimited forms</li><li>Dashboard widgets &amp; charts</li><li>Export submissions (CSV)</li><li>Custom branding &amp; priority support</li></ul>
-        <a class="os-btn primary" href="https://app.onestoneads.com/register">Subscribe</a></div>
-      <div class="os-plan"><h3>Pro — Yearly</h3><div class="os-price">$35 <span>/yr</span></div><div class="os-per">Save ~70% · 1 year</div>
-        <ul><li>Everything in Pro Monthly</li><li>All AI features included</li><li>Custom branding</li><li>Priority support</li></ul>
-        <a class="os-btn ghost" href="https://app.onestoneads.com/register">Subscribe</a></div>
-    </div>
-  </section>
+
   <section id="features">
     <p class="os-eyebrow">Everything built in</p>
     <h2 class="os-h2">One builder. Every form.</h2>
@@ -132,9 +117,9 @@
           <li>PDF reports + WhatsApp / email delivery</li>
           <li>QR &amp; link sharing, real-time responses, offline-friendly</li>
         </ul>
-        <a class="os-btn primary" style="display:inline-block" href="https://app.onestoneads.com/">Download for Android</a>
+        <a class="os-btn primary" style="display:inline-block" href="https://app.onestoneads.com/download">Download for Android</a>
       </div>
-      <div class="qr"><div style="font-size:3.4rem">📲</div><p style="color:#9A9BA8;margin:14px 0 0;font-size:.9rem;line-height:1.5">Scan or tap to install<br>Direct install (.apk)</p></div>
+      <div class="qr"><img src="/scroll-world/assets/download-qr.svg" alt="Scan to install FormBuilder for Android" width="190" height="190" style="display:block;width:190px;height:190px;border-radius:12px;background:#fff;padding:10px"/><p style="color:#9A9BA8;margin:16px 0 0;font-size:.9rem;line-height:1.5">Scan or tap to install<br>Direct install (.apk)</p></div>
     </div>
   </section>
   <section id="templates">
@@ -145,6 +130,22 @@
       <div class="os-card"><h3>Travel Booking</h3><p>Capture travel requirements from your customers in one quick form.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create travel form</a></div>
       <div class="os-card"><h3>Contact Form</h3><p>A classic contact form to collect general inquiries from anyone.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create contact form</a></div>
       <div class="os-card"><h3>Customer Feedback</h3><p>Collect feedback about your customers' experience and ratings.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create feedback form</a></div>
+    </div>
+  </section>
+<section id="pricing">
+    <p class="os-eyebrow">Simple, flexible pricing</p>
+    <h2 class="os-h2">Plans that scale with you</h2>
+    <p class="os-sub">Transparent pricing with no hidden charges. Start free, then upgrade when your forms grow.</p>
+    <div class="os-plans">
+      <div class="os-plan"><h3>Free</h3><div class="os-price">$0 <span>/lifetime</span></div><div class="os-per">Lifetime access</div>
+        <ul><li>1 form</li><li>Multi-step forms</li><li>Shareable survey links</li><li>Unlimited submissions</li></ul>
+        <a class="os-btn ghost" href="https://app.onestoneads.com/register">Get started</a></div>
+      <div class="os-plan pop"><div class="badge">MOST POPULAR</div><h3>Pro — Monthly</h3><div class="os-price">$9.99 <span>/mo</span></div><div class="os-per">1 month duration</div>
+        <ul><li>AI: build, scan, translate &amp; insights</li><li>Unlimited forms</li><li>Dashboard widgets &amp; charts</li><li>Export submissions (CSV)</li><li>Custom branding &amp; priority support</li></ul>
+        <a class="os-btn primary" href="https://app.onestoneads.com/register">Subscribe</a></div>
+      <div class="os-plan"><h3>Pro — Yearly</h3><div class="os-price">$35 <span>/yr</span></div><div class="os-per">Save ~70% · 1 year</div>
+        <ul><li>Everything in Pro Monthly</li><li>All AI features included</li><li>Custom branding</li><li>Priority support</li></ul>
+        <a class="os-btn ghost" href="https://app.onestoneads.com/register">Subscribe</a></div>
     </div>
   </section>
   <section id="faq" class="os-faq">
