@@ -50,6 +50,15 @@
   gtag('config', 'G-FW8W9F0T9Z');
 </script>
 
+<style>
+/* The site header is position:fixed and its height is driven by the logo
+   (~139px desktop, ~180px mobile). The auth content's default padding-top
+   (90px) is too short, so the "Sign Up" / "Sign In" title rendered behind
+   the header. Give it enough top clearance to sit below the fixed header. */
+.login-content-inner{padding-top:165px !important;}
+@media (max-width:991px){.login-content-inner{padding-top:200px !important;}}
+</style>
+
 </head>
 
 <body>
@@ -168,7 +177,7 @@
                 <div class="mobile-menu-wrapper">
                     <div class="mobile-menu-bar">
                         <ul>
-                            <li><a href="{{ route('landingPageHome') }}" tabindex="0"> {{ __('Home') }} </a></li>
+                            <li><a href="{{ route('landingpage') }}" tabindex="0"> {{ __('Home') }} </a></li>
                             @if (!empty($headerMainMenus))
                                 @foreach ($headerMainMenus as $headerMainMenu)
                                     <li class="menu-has-items">
