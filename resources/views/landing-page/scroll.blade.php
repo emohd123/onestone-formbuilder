@@ -133,9 +133,9 @@
     <h2 class="os-h2">Start from a template</h2>
     <p class="os-sub">Choose a ready-made form for bookings, contact requests, or feedback, then customize it in minutes.</p>
     <div class="os-grid">
-      <div class="os-card"><div class="os-tpl-thumb" style="background:url(/scroll-world/assets/card-travel.webp) center/cover"></div><h3>Travel Booking</h3><p>Capture travel requirements from your customers in one quick form.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create travel form</a></div>
-      <div class="os-card"><div class="os-tpl-thumb" style="background:url(/scroll-world/assets/card-contact.webp) center/cover"></div><h3>Contact Form</h3><p>A classic contact form to collect general inquiries from anyone.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create contact form</a></div>
-      <div class="os-card"><div class="os-tpl-thumb" style="background:url(/scroll-world/assets/card-feedback.webp) center/cover"></div><h3>Customer Feedback</h3><p>Collect feedback about your customers' experience and ratings.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create feedback form</a></div>
+      <div class="os-card"><div class="os-tpl-thumb" style="background:url(/scroll-world/assets/card-travel.webp?v=2) center/cover"></div><h3>Travel Booking</h3><p>Capture travel requirements from your customers in one quick form.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create travel form</a></div>
+      <div class="os-card"><div class="os-tpl-thumb" style="background:url(/scroll-world/assets/card-contact.webp?v=2) center/cover"></div><h3>Contact Form</h3><p>A classic contact form to collect general inquiries from anyone.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create contact form</a></div>
+      <div class="os-card"><div class="os-tpl-thumb" style="background:url(/scroll-world/assets/card-feedback.webp?v=2) center/cover"></div><h3>Customer Feedback</h3><p>Collect feedback about your customers' experience and ratings.</p><a class="os-btn ghost os-tpl-btn" href="https://app.onestoneads.com/register">Create feedback form</a></div>
     </div>
   </section>
 <section id="pricing">
