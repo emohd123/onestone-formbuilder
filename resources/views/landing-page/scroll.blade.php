@@ -280,15 +280,15 @@ mountScrollWorld(document.getElementById('world'), {"brand":{"name":"OneStone Fo
     +   'color:color-mix(in srgb,var(--sw-ink) 90%,#000);text-shadow:0 1px 14px var(--sw-bg);}'
     + '.sw-root .sw-copy__num{letter-spacing:.2em;}'
     + '.sw-root .sw-nav__item{font-weight:600;}'
-    // Pull the camera back: the 1080p clips at object-fit:cover felt too close/huge.
-    // Scale the media down AND feather its edges with a mask so the media melts
-    // into the cream page bg — no hard rectangle edges, softer crossfades.
-    // Desktop only — phones need the full crop.
+    // The 1080p clips at full-bleed felt too close/huge. Flatten the backdrop to
+    // the cream page bg and frame each diorama as a soft rounded card pulled back
+    // from the edges — deliberate & clean, not a bleeding rectangle. Desktop only;
+    // phones keep the immersive full crop.
+    + '.sw-root .sw-stage{background:var(--sw-bg);}'
     + '@media(min-width:861px){'
     +   '.sw-root .sw-scene__video,.sw-root .sw-scene__still{'
-    +     'transform:scale(.85);transform-origin:50% 45%;'
-    +     '-webkit-mask-image:radial-gradient(115% 105% at 50% 45%, #000 58%, transparent 92%);'
-    +     'mask-image:radial-gradient(115% 105% at 50% 45%, #000 58%, transparent 92%);}'
+    +     'transform:scale(.82);transform-origin:50% 43%;border-radius:26px;'
+    +     'box-shadow:0 26px 64px rgba(30,20,50,.16);}'
     + '}';
   document.head.appendChild(ov);
 })();
