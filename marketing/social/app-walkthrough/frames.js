@@ -1,5 +1,5 @@
 const { chromium } = require('playwright-core');
-const FPS = 30, DUR = 35.0, N = Math.round(FPS*DUR);
+const FPS = 30, DUR = 30.0, N = Math.round(FPS*DUR);
 (async () => {
   const b = await chromium.launch({ executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
     args:['--no-sandbox','--font-render-hinting=none','--disable-lcd-text'] });

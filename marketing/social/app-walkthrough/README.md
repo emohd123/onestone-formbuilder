@@ -1,23 +1,42 @@
-# App walk-through video — 35s vertical
+# App walk-through video — 30s vertical
 
-A 35-second walk-through of the **FormBuilder Android app**, built for Instagram
-Reels, TikTok and Stories. Every screen sits inside a persistent phone frame, so
-it reads as a product demo rather than a slideshow.
+A 30-second walk-through of the **FormBuilder Android app**, built for Instagram
+Reels, TikTok and Stories.
 
 `onestone-app-walkthrough-1080x1920.mp4` — 1080×1920, 30fps, H.264 High,
-silent AAC track, ~2.7 MB.
+silent AAC track, ~4.4 MB.
+
+## Design constraints that drive the layout
+
+The device is deliberately **near full-bleed** — 960px wide in a 1080px frame,
+cropped off the bottom. A reel is watched at roughly 400px wide on a phone, so a
+device inset in the frame shrinks the app UI past the point of legibility. At
+this scale a 44px label in-app renders around 18px on a real screen, which reads
+comfortably.
+
+Motion is continuous rather than a sequence of fades:
+
+- a **camera** wraps the device and pushes in or pulls back once per beat, with
+  a slow handheld drift underneath so no frame is ever static
+- screens **hard-cut** with a scale pop instead of crossfading
+- the scan → built cut is hidden behind a **white flash**, so the paper form
+  appears to become the digital one
+- captions are **kinetic** — words stagger in individually
+- **tap ripples** mark the moments a finger would hit the screen
+
+Camera push-ins are capped so the device top never rises into the caption band.
 
 ## Beats
 
 | Time | Beat | On screen |
 | --- | --- | --- |
-| 0.0–5.0 | The whole builder. On your phone. | App icon with the AI badge |
-| 4.6–10.6 | Snap a paper form. | Camera view over a paper form → scan → fields built |
-| 10.2–16.4 | Describe it. AI writes it. | Prompt typed, fields generated one by one |
-| 16.0–21.8 | Share by link or QR. | Share screen with a scannable QR |
-| 21.4–27.6 | PDFs land on WhatsApp. | Chat thread with the branded PDF |
-| 27.2–31.6 | Track it all live. | Counters running, chart growing, CSV export |
-| 31.2–35.0 | Get it free on Android. | App icon, the real download QR, install link |
+| 0.0–3.5 | Still typing these up? | Camera over a paper form, scan line, capture |
+| 3.5–8.3 | AI rebuilds it in seconds. | Match cut to the built form, fields landing |
+| 8.3–13.3 | Just describe what you need. | Prompt typed, AI writing the fields |
+| 13.3–17.9 | Share by link or QR. | Share screen, push-in on a scannable QR |
+| 17.9–22.7 | PDFs land on WhatsApp. | Chat thread with the branded PDF |
+| 22.7–27.1 | Track it all live. | Counters running, chart growing, CSV export |
+| 26.5–30.0 | Free on Android. | App icon, the real download QR, install link |
 
 The end card carries the genuine `download-qr.svg` from
 `public/scroll-world/assets/`, so it installs the actual APK when scanned.
@@ -36,13 +55,13 @@ pip install qrcode pillow imageio-ffmpeg
 
 python3 buildvid.py    # inlines font, app icon and both QRs -> video.built.html
 mkdir -p frames
-node frames.js         # renders 1050 PNG frames at 1080x1920 (~4 min)
+node frames.js         # renders 900 PNG frames at 1080x1920 (~3.5 min)
 ./encode.sh            # encodes frames -> MP4
 ```
 
-To change timing or copy, edit `video.html` — the beat windows live in the `B`
-array and the `S` map inside `render()` — then re-run `frames.js` and
-`encode.sh`. `frames.js` skips frames that already exist, so delete `frames/`
+To change timing or copy, edit `video.html` — the beat windows live in the `B` array,
+the screen cuts in `SCR` and the camera moves in `CAM` — then re-run `frames.js`
+and `encode.sh`. `frames.js` skips frames that already exist, so delete `frames/`
 when you change anything visual.
 
 ## Notes
