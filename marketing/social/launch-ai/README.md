@@ -1,48 +1,57 @@
-# Launch campaign — "AI builds the form"
+# Launch campaign — "Snap the paper. Get the form."
 
 Social assets for advertising OneStone FormBuilder, built on the live brand
 system used by the landing page (`resources/views/landing-page/scroll.blade.php`).
 
+A six-slide carousel plus a matching story. One idea per slide, type sized to
+stay readable at feed-thumbnail scale.
+
 ## Files
 
-| File | Use |
-| --- | --- |
-| `onestone-post-feed-1080x1080.png` | Instagram / Facebook / LinkedIn feed post (1:1) |
-| `onestone-post-story-1080x1920.png` | Instagram & Facebook story, TikTok, WhatsApp status (9:16) |
-| `design.html` | Editable source for both frames |
-| `render.js` | Re-renders the PNGs from `design.html` |
+| File | Format | Use |
+| --- | --- | --- |
+| `carousel-01-hook.png` … `carousel-06-cta.png` | 1080×1350 (4:5) | Instagram / Facebook / LinkedIn carousel, in order |
+| `carousel-story.png` | 1080×1920 (9:16) | Story, TikTok, WhatsApp status |
+| `carousel.html` | — | Editable source for all seven frames |
+| `build.py` | — | Inlines font, logos and QR into `carousel.built.html` |
+| `render.js` | — | Screenshots each frame to PNG |
+| `captions.md` | — | Per-platform caption copy and posting notes |
+
+## Slide order
+
+1. **Hook** — paper form → phone. The transformation, no explanation needed.
+2. **AI prompt** — describe a form in one line, AI writes the fields.
+3. **Share** — link, QR, embed. Carries a real scannable QR to `/register`.
+4. **WhatsApp** — every submission arrives as a branded PDF.
+5. **Dashboard** — live counts, charts, CSV export.
+6. **CTA** — free plan, Pro pricing, link.
 
 ## Brand tokens used
 
 - Gradient: `#E0608E → #9B45A6 → #3E93D4`
-- Surface: `#1B1C22`, cards `#26272F`, borders `#34353F`
-- Success accent: `#3ED6B5`
+- Cream ground: `#F5EDE0` · ink `#22242C` · dark slab `#1B1C22`
 - Type: Open Sans 300–800 (`public/scroll-world/assets/opensans.woff2`)
-- Logo: `public/scroll-world/assets/brand-logo.png` (light lockup, for dark backgrounds)
+- Logos: `brand-logo-dark.png` on cream, `brand-logo.png` on dark
 
 ## Re-rendering
 
-`design.html` contains `__FONT__` and `__LOGO__` placeholders that are replaced
-with base64 of the font and logo before rendering, so the output PNGs need no
-network access.
-
 ```bash
 cd marketing/social/launch-ai
-npm i playwright-core
-python3 - <<'PY'
-import base64
-h = open('design.html').read()
-enc = lambda p: base64.b64encode(open(p,'rb').read()).decode()
-h = h.replace('__FONT__', enc('../../../public/scroll-world/assets/opensans.woff2'))
-h = h.replace('__LOGO__', enc('../../../public/scroll-world/assets/brand-logo.png'))
-open('design.built.html','w').write(h)
-PY
-node render.js
+npm i playwright-core qrcode   # qrcode via pip: pip install qrcode
+python3 build.py               # writes carousel.built.html
+node render.js                 # writes the PNGs
 ```
 
-Edit copy directly in `design.html` (the two `.frame` blocks) and re-render to
-produce campaign variants.
+`carousel.html` holds `__FONT__`, `__LOGO__`, `__LOGOD__` and `__QR__`
+placeholders that `build.py` fills with base64 assets and a generated QR, so
+the output PNGs need no network access.
 
-## Caption copy
+Each slide's visual sits in a `.vis` wrapper and is auto-scaled to fit the
+space left by the headline, so you can edit copy freely without the artwork
+overflowing the frame.
 
-See `captions.md`.
+## Note on the QR
+
+`build.py` generates a genuine QR pointing at
+`https://app.onestoneads.com/register`. If that URL changes, edit the
+`add_data(...)` call and re-render — don't hand-edit the SVG.
