@@ -1,0 +1,335 @@
+<meta charset="utf-8">
+<style>
+@font-face{font-family:'Open Sans';font-weight:300 800;font-style:normal;src:url(data:font/woff2;base64,__FONT__) format('woff2');}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#3a3a42;font-family:'Open Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+
+.slide{
+  width:1080px;height:1350px;position:relative;overflow:hidden;margin-bottom:40px;
+  background:#F5EDE0;color:#22242C;
+  --grad:linear-gradient(112deg,#E0608E 0%,#9B45A6 50%,#3E93D4 100%);
+}
+.slide .in{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;padding:76px 80px 68px;}
+/* warm depth on cream */
+.slide.cream::before{content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(58% 44% at 84% 4%,rgba(224,96,142,.16),transparent 64%),
+             radial-gradient(60% 46% at 4% 98%,rgba(62,147,212,.15),transparent 66%);}
+
+.hd{display:flex;align-items:center;justify-content:space-between;height:56px;flex:none;}
+.hd img{height:44px;display:block;}
+.hd .n{font-size:24px;font-weight:800;color:#9A968E;letter-spacing:.06em;}
+
+.eyebrow{font-size:26px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+h2{font-size:96px;font-weight:800;line-height:.99;letter-spacing:-.035em;}
+h2 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.sub{font-size:35px;line-height:1.42;color:#63636F;font-weight:400;max-width:26ch;}
+
+.vis{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;margin:30px 0 28px;}
+.vis>*{width:100%;flex:none;}
+.ft{margin-top:0;flex:none;display:flex;align-items:center;justify-content:space-between;font-size:24px;font-weight:700;color:#9A968E;}
+.ft .swipe{background:#22242C;color:#F5EDE0;padding:14px 26px;border-radius:999px;font-size:23px;letter-spacing:.1em;}
+.dots{display:flex;gap:10px;}
+.dots i{width:12px;height:12px;border-radius:50%;background:#CFC6B6;display:block;}
+.dots i.on{background:var(--grad);width:34px;border-radius:999px;}
+
+/* ---------- phone ---------- */
+.phone{width:392px;height:772px;border-radius:58px;background:#22242C;padding:13px;
+  box-shadow:0 44px 90px rgba(34,36,44,.34), 0 0 0 1px rgba(0,0,0,.06);}
+.phone .screen{background:#fff;border-radius:46px;height:100%;overflow:hidden;display:flex;flex-direction:column;}
+.phone .bar{background:var(--grad);padding:46px 30px 26px;color:#fff;}
+.phone .bar .t{font-size:33px;font-weight:800;letter-spacing:-.02em;}
+.phone .bar .s{font-size:22px;opacity:.85;margin-top:4px;font-weight:600;}
+.phone .body{padding:26px 30px;display:flex;flex-direction:column;gap:20px;flex:1;}
+.pf{border:2px solid #E4E0D8;border-radius:16px;padding:14px 18px;background:#FCFBF8;}
+.pf .l{font-size:19px;font-weight:800;color:#96939C;letter-spacing:.06em;text-transform:uppercase;}
+.pf .v{font-size:29px;font-weight:700;color:#22242C;margin-top:3px;}
+.pf .stars{color:#F2A73B;letter-spacing:.1em;}
+.psub{background:var(--grad);color:#fff;text-align:center;font-size:29px;font-weight:800;
+  padding:22px;border-radius:16px;margin-top:auto;box-shadow:0 14px 30px rgba(155,69,166,.32);}
+
+/* ---------- paper ---------- */
+.paper{width:474px;height:612px;background:
+  linear-gradient(180deg,#FFFEFA 0%,#FBF7EE 100%);
+  box-shadow:0 34px 66px rgba(34,36,44,.26), 0 2px 0 rgba(0,0,0,.05);
+  padding:44px 42px;position:relative;overflow:hidden;}
+.paper .ph{font-size:27px;font-weight:800;letter-spacing:.1em;color:#4A4A55;text-transform:uppercase;}
+.paper .prule{height:3px;background:#22242C;opacity:.8;margin:12px 0 30px;width:56%;}
+.paper .row{margin-bottom:26px;}
+.paper .row .lab{font-size:20px;font-weight:800;color:#8D8A82;letter-spacing:.09em;text-transform:uppercase;margin-bottom:9px;}
+.paper .line{height:2px;background:#D8D2C6;}
+.paper .ink{display:block;}
+.paper .cbs{display:flex;gap:20px;margin-top:6px;}
+.paper .cb{width:34px;height:34px;border:3px solid #C9C2B4;border-radius:5px;position:relative;}
+.paper .stain{position:absolute;width:190px;height:190px;border-radius:50%;
+  border:14px solid rgba(150,98,42,.13);right:-52px;bottom:-46px;}
+.paper .fold{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(104deg,rgba(0,0,0,0) 46%,rgba(0,0,0,.045) 50%,rgba(255,255,255,.5) 54%,rgba(0,0,0,0) 60%);}
+
+/* ---------- slide 1 stage ---------- */
+.stage{position:relative;height:800px;width:920px;flex:none;}
+.stage .paper{position:absolute;left:-6px;top:112px;transform:rotate(-6.5deg);}
+.stage .phone{position:absolute;right:-4px;top:6px;transform:rotate(2.5deg);}
+.zap{position:absolute;left:396px;top:352px;width:132px;height:132px;border-radius:50%;
+  background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:56px;font-weight:800;z-index:5;box-shadow:0 22px 46px rgba(155,69,166,.46),0 0 0 14px #F5EDE0;}
+
+/* ---------- slide 2: prompt ---------- */
+.promptcard{background:#22242C;border-radius:34px;padding:44px;flex:none;
+  box-shadow:0 40px 80px rgba(34,36,44,.3);}
+.promptcard .bar{background:#31333D;border-radius:20px;padding:30px 32px;display:flex;align-items:center;gap:20px;}
+.promptcard .bar .sp{font-size:38px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;}
+.promptcard .bar .tx{font-size:33px;color:#fff;font-weight:700;flex:1;letter-spacing:-.01em;}
+.promptcard .bar .cur{width:4px;height:38px;background:var(--grad);border-radius:2px;}
+.promptcard .mid{display:flex;align-items:center;gap:20px;margin:30px 0 26px;}
+.promptcard .mid .ln{flex:1;height:2px;background:linear-gradient(90deg,transparent,#4C4E5A,transparent);}
+.promptcard .mid .tg{font-size:24px;font-weight:800;letter-spacing:.18em;color:#8E90A0;}
+.gf{background:#31333D;border-radius:18px;padding:22px 28px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;}
+.gf .n{font-size:31px;font-weight:700;color:#fff;}
+.gf .ty{font-size:22px;font-weight:800;color:#9FA1B2;letter-spacing:.08em;background:#3D3F4B;padding:9px 18px;border-radius:999px;}
+.gf:last-child{margin-bottom:0;}
+.secs{margin-top:32px;text-align:center;font-size:30px;font-weight:800;color:#3ED6B5;}
+
+/* ---------- slide 3: QR ---------- */
+.qrwrap{flex:none;display:flex;align-items:center;gap:56px;}
+.qrbox{background:#fff;border-radius:34px;padding:34px;box-shadow:0 34px 70px rgba(34,36,44,.24);flex:none;}
+.qrbox svg{display:block;width:330px;height:330px;}
+.qrside{flex:1;display:flex;flex-direction:column;gap:24px;}
+.linkpill{background:#fff;border:3px solid #E2DACB;border-radius:999px;padding:24px 34px;font-size:28px;
+  font-weight:700;color:#4A4A55;display:flex;align-items:center;gap:16px;box-shadow:0 12px 26px rgba(34,36,44,.09);}
+.linkpill .dot{width:14px;height:14px;border-radius:50%;background:var(--grad);flex:none;}
+.embed{background:#22242C;color:#B9BBC6;border-radius:22px;padding:26px 30px;font-size:25px;font-weight:600;
+  font-family:ui-monospace,Menlo,monospace;letter-spacing:-.01em;}
+.embed b{color:#E0608E;font-weight:700;}
+
+/* ---------- slide 4: whatsapp ---------- */
+.chat{flex:none;background:#DDD5C6;border-radius:34px;padding:44px 40px;
+  box-shadow:inset 0 2px 10px rgba(0,0,0,.06);}
+.bub{max-width:78%;border-radius:26px;padding:26px 30px;font-size:30px;line-height:1.4;font-weight:600;position:relative;}
+.bub.them{background:#fff;color:#22242C;border-top-left-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.09);}
+.bub.me{background:#25543F;color:#EAF6EF;margin-left:auto;border-top-right-radius:8px;margin-top:22px;
+  box-shadow:0 10px 24px rgba(0,0,0,.14);}
+.pdfcard{background:#fff;border-radius:18px;padding:22px;display:flex;align-items:center;gap:20px;margin-bottom:16px;}
+.pdficon{width:66px;height:66px;border-radius:14px;background:#E4453C;color:#fff;font-size:21px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex:none;}
+.pdfcard .nm{font-size:27px;font-weight:800;color:#22242C;line-height:1.25;}
+.pdfcard .mt{font-size:22px;color:#8A8A95;font-weight:600;margin-top:3px;}
+.tick{font-size:24px;color:#7FD4A8;text-align:right;margin-top:8px;font-weight:700;}
+
+/* ---------- slide 5: dashboard ---------- */
+.dash{flex:none;background:#fff;border-radius:34px;padding:44px;
+  box-shadow:0 34px 70px rgba(34,36,44,.2);}
+.kpis{display:flex;gap:20px;margin-bottom:38px;}
+.kpi{flex:1;background:#FAF7F1;border:2px solid #EDE7DC;border-radius:22px;padding:24px 26px;}
+.kpi .k{font-size:21px;font-weight:800;color:#95928B;letter-spacing:.07em;text-transform:uppercase;}
+.kpi .v{font-size:52px;font-weight:800;letter-spacing:-.03em;margin-top:6px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.chart{display:flex;align-items:flex-end;gap:20px;height:270px;}
+.chart .b{flex:1;border-radius:14px 14px 6px 6px;position:relative;}
+.chart .b span{position:absolute;bottom:-42px;left:0;right:0;text-align:center;font-size:22px;font-weight:800;color:#A5A199;}
+.chartpad{padding-bottom:46px;}
+
+/* ---------- slide 6: CTA ---------- */
+.slide.dark{background:#1B1C22;color:#F2F1F6;}
+.slide.dark::before{content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(64% 48% at 88% 4%,rgba(224,96,142,.30),transparent 62%),
+             radial-gradient(66% 50% at 6% 98%,rgba(62,147,212,.26),transparent 64%);}
+.slide.dark .hd .n{color:#6E6F7E;}
+.slide.dark .sub{color:#A4A5B2;}
+.slide.dark .ft{color:#6E6F7E;}
+.slide.dark .dots i{background:#3B3C48;}
+.bigbtn{background:var(--grad);color:#fff;font-size:42px;font-weight:800;text-align:center;
+  padding:38px;border-radius:999px;margin-top:56px;box-shadow:0 26px 60px rgba(155,69,166,.46);flex:none;}
+.urlline{text-align:center;font-size:32px;font-weight:700;color:#8F90A0;margin-top:30px;flex:none;}
+.pricerow{display:flex;gap:20px;margin-top:56px;flex:none;}
+.pcard{flex:1;background:#26272F;border:2px solid #383946;border-radius:26px;padding:32px 30px;}
+.pcard.pop{border-color:#D6407E;background:#2A2B36;}
+.pcard .pn{font-size:25px;font-weight:800;color:#9FA0B0;letter-spacing:.06em;text-transform:uppercase;}
+.pcard .pp{font-size:56px;font-weight:800;margin-top:8px;letter-spacing:-.03em;}
+.pcard .pp small{font-size:26px;color:#8F90A0;font-weight:700;}
+.pcard .pd{font-size:24px;color:#9FA0B0;margin-top:6px;font-weight:600;}
+
+/* ---------- story 9:16 ---------- */
+.slide.story{width:1080px;height:1920px;}
+.slide.story .in{padding:150px 90px 130px;}
+.slide.story .hd img{height:58px;}
+.slide.story h2{font-size:112px;}
+.slide.story .sub{font-size:40px;max-width:24ch;}
+.slide.story .vis{margin:44px 0 40px;}
+.storycta{flex:none;background:var(--grad);color:#fff;font-size:44px;font-weight:800;text-align:center;
+  padding:40px;border-radius:999px;box-shadow:0 26px 60px rgba(155,69,166,.42);margin-bottom:30px;}
+.storyfoot{flex:none;display:flex;justify-content:space-between;align-items:center;font-size:30px;font-weight:700;color:#9A968E;}
+</style>
+
+<!-- ================= 1 · HOOK ================= -->
+<div class="slide cream" id="s1"><div class="in">
+  <div class="hd"><img src="data:image/png;base64,__LOGOD__"><div class="n">01</div></div>
+  <h2 style="margin-top:34px">Snap the paper.<br><span class="g">Get the form.</span></h2>
+  <p class="sub" style="margin-top:22px">Photograph any paper form. AI rebuilds it as a digital one you can send today.</p>
+  <div class="vis"><div class="stage">
+    <div class="paper">
+      <div class="ph">Customer Feedback</div>
+      <div class="prule"></div>
+      <div class="row"><div class="lab">Name</div>
+        <svg class="ink" width="330" height="30" viewBox="0 0 330 30"><path d="M6 21 C22 6,34 26,49 16 S76 4,92 19 S118 26,133 12 S160 6,176 20 S203 24,214 14" fill="none" stroke="#3B4B7A" stroke-width="4" stroke-linecap="round"/></svg>
+        <div class="line" style="margin-top:6px"></div></div>
+      <div class="row"><div class="lab">How was your visit?</div>
+        <div class="cbs"><div class="cb"></div><div class="cb"></div><div class="cb"></div>
+          <svg width="44" height="44" viewBox="0 0 44 44" style="margin-left:-4px"><path d="M6 24 L17 35 L39 6" fill="none" stroke="#3B4B7A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      <div class="row"><div class="lab">Comments</div>
+        <svg class="ink" width="368" height="76" viewBox="0 0 368 76"><path d="M6 20 C26 6,40 28,60 16 S94 4,114 20 S150 28,170 13 S206 6,226 21 S258 26,274 15" fill="none" stroke="#3B4B7A" stroke-width="4" stroke-linecap="round"/><path d="M6 58 C24 44,38 66,58 54 S90 42,110 58 S144 64,162 51" fill="none" stroke="#3B4B7A" stroke-width="4" stroke-linecap="round"/></svg>
+        <div class="line" style="margin-top:4px"></div></div>
+      <div class="stain"></div><div class="fold"></div>
+    </div>
+    <div class="zap">✦</div>
+    <div class="phone"><div class="screen">
+      <div class="bar"><div class="t">Customer Feedback</div><div class="s">Café Onestone · 2 min</div></div>
+      <div class="body">
+        <div class="pf"><div class="l">Full name</div><div class="v">Sara A.</div></div>
+        <div class="pf"><div class="l">How was your visit?</div><div class="v stars">★★★★★</div></div>
+        <div class="pf"><div class="l">Comments</div><div class="v">Loved the flat white</div></div>
+        <div class="psub">Submit</div>
+      </div>
+    </div></div>
+  </div></div>
+  <div class="ft"><div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div><div class="swipe">SWIPE →</div></div>
+</div></div>
+
+<!-- ================= 2 · AI PROMPT ================= -->
+<div class="slide cream" id="s2"><div class="in">
+  <div class="hd"><img src="data:image/png;base64,__LOGOD__"><div class="n">02</div></div>
+  <p class="eyebrow" style="margin-top:46px">No paper? No problem</p>
+  <h2 style="margin-top:16px">Just say what<br>you <span class="g">need.</span></h2>
+  <p class="sub" style="margin-top:22px">Describe the form in one line. AI writes every field for you.</p>
+  <div class="vis"><div class="promptcard">
+    <div class="bar"><span class="sp">✦</span><span class="tx">Booking form for my salon</span><span class="cur"></span></div>
+    <div class="mid"><span class="ln"></span><span class="tg">AI BUILDS IT</span><span class="ln"></span></div>
+    <div class="gf"><span class="n">Full name</span><span class="ty">TEXT</span></div>
+    <div class="gf"><span class="n">Service needed</span><span class="ty">DROPDOWN</span></div>
+    <div class="gf"><span class="n">Preferred date &amp; time</span><span class="ty">DATE</span></div>
+    <div class="gf"><span class="n">Phone number</span><span class="ty">PHONE</span></div>
+    <div class="secs">Ready in 8 seconds</div>
+  </div></div>
+  <div class="ft"><div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div><div>15+ field types</div></div>
+</div></div>
+
+<!-- ================= 3 · SHARE ================= -->
+<div class="slide cream" id="s3"><div class="in">
+  <div class="hd"><img src="data:image/png;base64,__LOGOD__"><div class="n">03</div></div>
+  <p class="eyebrow" style="margin-top:46px">Share anywhere</p>
+  <h2 style="margin-top:16px">One code.<br><span class="g">Any customer.</span></h2>
+  <p class="sub" style="margin-top:22px">Print it, post it, embed it. They fill it on their phone in seconds — no app to install.</p>
+  <div class="vis"><div class="qrwrap">
+    <div class="qrbox">__QR__</div>
+    <div class="qrside">
+      <div class="linkpill"><span class="dot"></span>Share a link</div>
+      <div class="linkpill"><span class="dot"></span>Print a QR code</div>
+      <div class="linkpill"><span class="dot"></span>Embed on your site</div>
+      <div class="embed">&lt;<b>iframe</b> src="your-form"&gt;</div>
+    </div>
+  </div></div>
+  <div class="ft"><div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div><div>Scan it — it's real</div></div>
+</div></div>
+
+<!-- ================= 4 · WHATSAPP PDF ================= -->
+<div class="slide cream" id="s4"><div class="in">
+  <div class="hd"><img src="data:image/png;base64,__LOGOD__"><div class="n">04</div></div>
+  <p class="eyebrow" style="margin-top:46px">Delivered, not buried</p>
+  <h2 style="margin-top:16px">Answers land<br>on <span class="g">WhatsApp.</span></h2>
+  <p class="sub" style="margin-top:22px">Every submission becomes a clean, branded PDF — sent to your phone or inbox.</p>
+  <div class="vis"><div class="chat">
+    <div class="bub them">New response — Customer Feedback 🎉</div>
+    <div class="bub me">
+      <div class="pdfcard">
+        <div class="pdficon">PDF</div>
+        <div><div class="nm">Feedback_Sara-A.pdf</div><div class="mt">128 KB · branded</div></div>
+      </div>
+      Forwarded to the team ✅
+      <div class="tick">09:41 ✓✓</div>
+    </div>
+  </div></div>
+  <div class="ft"><div class="dots"><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div><div>WhatsApp or email</div></div>
+</div></div>
+
+<!-- ================= 5 · DASHBOARD ================= -->
+<div class="slide cream" id="s5"><div class="in">
+  <div class="hd"><img src="data:image/png;base64,__LOGOD__"><div class="n">05</div></div>
+  <p class="eyebrow" style="margin-top:46px">Nothing gets lost</p>
+  <h2 style="margin-top:16px">Every response,<br><span class="g">counted.</span></h2>
+  <p class="sub" style="margin-top:22px">Live charts, filters and one-click CSV export — your data stays yours.</p>
+  <div class="vis"><div class="dash">
+    <div class="kpis">
+      <div class="kpi"><div class="k">Responses</div><div class="v">1,284</div></div>
+      <div class="kpi"><div class="k">This week</div><div class="v">+312</div></div>
+      <div class="kpi"><div class="k">Avg rating</div><div class="v">4.8</div></div>
+    </div>
+    <div class="chart chartpad">
+      <div class="b" style="height:46%;background:#E0608E"><span>MON</span></div>
+      <div class="b" style="height:62%;background:#C2549C"><span>TUE</span></div>
+      <div class="b" style="height:41%;background:#A44BA8"><span>WED</span></div>
+      <div class="b" style="height:78%;background:#8659B8"><span>THU</span></div>
+      <div class="b" style="height:92%;background:#5E77C8"><span>FRI</span></div>
+      <div class="b" style="height:70%;background:#3E93D4"><span>SAT</span></div>
+    </div>
+  </div></div>
+  <div class="ft"><div class="dots"><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div><div>Export to CSV</div></div>
+</div></div>
+
+<!-- ================= 6 · CTA ================= -->
+<div class="slide dark" id="s6"><div class="in">
+  <div class="hd"><img src="data:image/png;base64,__LOGO__"><div class="n">06</div></div>
+  <p class="eyebrow" style="margin-top:80px">Start today</p>
+  <h2 style="margin-top:18px">Your first form,<br><span class="g">free forever.</span></h2>
+  <p class="sub" style="margin-top:24px">No card. No installs. Sign in with Google and publish in minutes.</p>
+  <div class="pricerow">
+    <div class="pcard"><div class="pn">Free</div><div class="pp">$0</div><div class="pd">1 form · unlimited replies</div></div>
+    <div class="pcard pop"><div class="pn">Pro yearly</div><div class="pp">$35 <small>/yr</small></div><div class="pd">Unlimited forms · all AI</div></div>
+  </div>
+  <div class="bigbtn">Build your first form</div>
+  <div class="urlline">app.onestoneads.com</div>
+  <div class="ft"><div class="dots"><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div><div>@formbuilder.onestone</div></div>
+</div></div>
+
+
+<!-- ================= 7 · STORY ================= -->
+<div class="slide cream story" id="s7"><div class="in">
+  <div class="hd"><img src="data:image/png;base64,__LOGOD__"><div class="n"></div></div>
+  <h2 style="margin-top:60px">Snap the paper.<br><span class="g">Get the form.</span></h2>
+  <p class="sub" style="margin-top:28px">AI rebuilds any paper form as a digital one — in seconds.</p>
+  <div class="vis"><div class="stage">
+    <div class="paper">
+      <div class="ph">Customer Feedback</div>
+      <div class="prule"></div>
+      <div class="row"><div class="lab">Name</div>
+        <svg class="ink" width="330" height="30" viewBox="0 0 330 30"><path d="M6 21 C22 6,34 26,49 16 S76 4,92 19 S118 26,133 12 S160 6,176 20 S203 24,214 14" fill="none" stroke="#3B4B7A" stroke-width="4" stroke-linecap="round"/></svg>
+        <div class="line" style="margin-top:6px"></div></div>
+      <div class="row"><div class="lab">How was your visit?</div>
+        <div class="cbs"><div class="cb"></div><div class="cb"></div><div class="cb"></div>
+          <svg width="44" height="44" viewBox="0 0 44 44" style="margin-left:-4px"><path d="M6 24 L17 35 L39 6" fill="none" stroke="#3B4B7A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      <div class="row"><div class="lab">Comments</div>
+        <svg class="ink" width="368" height="76" viewBox="0 0 368 76"><path d="M6 20 C26 6,40 28,60 16 S94 4,114 20 S150 28,170 13 S206 6,226 21 S258 26,274 15" fill="none" stroke="#3B4B7A" stroke-width="4" stroke-linecap="round"/><path d="M6 58 C24 44,38 66,58 54 S90 42,110 58 S144 64,162 51" fill="none" stroke="#3B4B7A" stroke-width="4" stroke-linecap="round"/></svg>
+        <div class="line" style="margin-top:4px"></div></div>
+      <div class="stain"></div><div class="fold"></div>
+    </div>
+    <div class="zap">&#10022;</div>
+    <div class="phone"><div class="screen">
+      <div class="bar"><div class="t">Customer Feedback</div><div class="s">Caf&eacute; Onestone &middot; 2 min</div></div>
+      <div class="body">
+        <div class="pf"><div class="l">Full name</div><div class="v">Sara A.</div></div>
+        <div class="pf"><div class="l">How was your visit?</div><div class="v stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
+        <div class="pf"><div class="l">Comments</div><div class="v">Loved the flat white</div></div>
+        <div class="psub">Submit</div>
+      </div>
+    </div></div>
+  </div></div>
+  <div class="storycta">Build your first form &mdash; free</div>
+  <div class="storyfoot"><span>@formbuilder.onestone</span><span>app.onestoneads.com</span></div>
+</div></div>
+<script>
+window.__fit = () => document.querySelectorAll('.vis').forEach(v=>{
+  const el=v.firstElementChild; el.style.transform='none';
+  const avail=v.clientHeight, hgt=el.getBoundingClientRect().height;
+  if(hgt>avail){ const s=avail/hgt; el.style.transformOrigin='center center'; el.style.transform='scale('+s.toFixed(4)+')'; }
+});
+window.__fit();
+</script>

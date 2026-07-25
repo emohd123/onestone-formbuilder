@@ -1,0 +1,450 @@
+<meta charset="utf-8">
+<style>
+@font-face{font-family:'Open Sans';font-weight:300 800;font-style:normal;src:url(data:font/woff2;base64,__FONT__) format('woff2');}
+*{box-sizing:border-box;margin:0;padding:0;transition:none!important;animation:none!important;}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#F5EDE0;}
+body{font-family:'Open Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#F5EDE0;color:#22242C;
+  --grad:linear-gradient(112deg,#E0608E 0%,#9B45A6 50%,#3E93D4 100%);}
+#glow{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(54% 26% at 82% 2%,rgba(224,96,142,.22),transparent 64%),
+             radial-gradient(58% 30% at 4% 62%,rgba(62,147,212,.18),transparent 66%);}
+
+/* ---------- kinetic caption ---------- */
+#cap{position:absolute;left:74px;right:74px;top:94px;z-index:12;height:290px;}
+.capl{position:absolute;left:0;right:0;top:0;}
+.capl .k{font-size:30px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.capl h1{font-size:86px;font-weight:800;line-height:1.02;letter-spacing:-.035em;}
+.w{display:inline-block;white-space:pre;will-change:transform,opacity;}
+.w.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+/* ---------- top progress ---------- */
+#bar{position:absolute;left:0;top:0;height:9px;z-index:14;background:var(--grad);width:0;}
+
+/* ---------- camera + device ---------- */
+#cam{position:absolute;inset:0;z-index:5;will-change:transform;transform-origin:50% 80%;}
+#device{position:absolute;left:60px;top:418px;width:960px;height:2010px;border-radius:84px;
+  background:#16171C;padding:18px;box-shadow:0 -10px 120px rgba(34,36,44,.34), 0 40px 90px rgba(34,36,44,.3);}
+#screen{position:relative;width:924px;height:1974px;border-radius:68px;overflow:hidden;background:#FBF9F5;}
+.scr{position:absolute;inset:0;opacity:0;will-change:transform,opacity;}
+
+/* app chrome */
+.sbar{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 46px;
+  font-size:29px;font-weight:800;color:#22242C;}
+.sbar .ic{display:flex;gap:11px;}
+.sbar .ic i{display:block;width:26px;height:26px;border-radius:6px;background:#CBC7BF;}
+.ahead{height:112px;display:flex;align-items:center;gap:22px;padding:0 42px;border-bottom:2px solid #EDE7DC;}
+.ahead .mk{width:70px;height:70px;border-radius:20px;background:#1F2028;position:relative;overflow:hidden;flex:none;}
+.ahead .mk img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
+.ahead .ti{font-size:42px;font-weight:800;letter-spacing:-.02em;}
+.ahead .av{margin-left:auto;width:66px;height:66px;border-radius:50%;background:var(--grad);}
+.acont{position:absolute;left:0;right:0;top:180px;bottom:0;padding:38px 42px;}
+
+/* ---- scan ---- */
+#scScan{background:#101116;}
+.cam2{position:absolute;left:0;right:0;top:66px;bottom:0;background:#0B0C10;overflow:hidden;}
+.doc{position:absolute;left:112px;top:150px;width:700px;height:880px;
+  background:linear-gradient(180deg,#FFFEFA,#F5F0E6);transform:rotate(-2.6deg);
+  box-shadow:0 44px 90px rgba(0,0,0,.66);padding:56px 52px;}
+.doc .ph{font-size:38px;font-weight:800;letter-spacing:.09em;color:#43434E;text-transform:uppercase;}
+.doc .prule{height:5px;background:#22242C;opacity:.78;margin:16px 0 44px;width:58%;}
+.doc .lab{font-size:27px;font-weight:800;color:#8B887F;letter-spacing:.09em;text-transform:uppercase;margin-bottom:12px;}
+.doc .line{height:3px;background:#D6D0C3;margin-top:8px;}
+.doc .row{margin-bottom:40px;}
+.doc .cbs{display:flex;gap:26px;margin-top:8px;}
+.doc .cb{width:46px;height:46px;border:4px solid #C7C0B2;border-radius:8px;}
+.doc .stain{position:absolute;width:250px;height:250px;border-radius:50%;
+  border:18px solid rgba(150,98,42,.14);right:-66px;bottom:-58px;}
+.brk{position:absolute;width:104px;height:104px;border:9px solid #E0608E;}
+.brk.tl{left:70px;top:112px;border-right:0;border-bottom:0;border-radius:20px 0 0 0;}
+.brk.tr{right:70px;top:112px;border-left:0;border-bottom:0;border-radius:0 20px 0 0;}
+.brk.bl{left:70px;top:1030px;border-right:0;border-top:0;border-radius:0 0 0 20px;}
+.brk.br{right:70px;top:1030px;border-left:0;border-top:0;border-radius:0 0 20px 0;}
+#scanln{position:absolute;left:50px;right:50px;height:190px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(224,96,142,0),rgba(224,96,142,.55),rgba(62,147,212,.9),rgba(62,147,212,0));filter:blur(3px);}
+.shutter{position:absolute;left:50%;transform:translateX(-50%);top:1240px;width:150px;height:150px;border-radius:50%;
+  border:9px solid rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;}
+.shutter i{width:112px;height:112px;border-radius:50%;background:#fff;display:block;}
+.scanlabel{position:absolute;left:50px;right:50px;top:1150px;text-align:center;color:#fff;font-size:32px;font-weight:800;letter-spacing:.14em;}
+
+/* ---- cards ---- */
+.fcard{background:#fff;border:2px solid #EBE5DA;border-radius:28px;padding:30px 36px;margin-bottom:22px;
+  box-shadow:0 10px 26px rgba(34,36,44,.06);display:flex;align-items:center;justify-content:space-between;}
+.fcard .l{font-size:26px;font-weight:800;color:#96939C;letter-spacing:.07em;text-transform:uppercase;}
+.fcard .v{font-size:44px;font-weight:700;margin-top:6px;letter-spacing:-.02em;}
+.fcard .ty{font-size:26px;font-weight:800;color:#9B7BB4;background:#F3ECF7;padding:11px 22px;border-radius:999px;}
+.fcard .stars{color:#F2A73B;letter-spacing:.08em;}
+.done{display:flex;align-items:center;gap:20px;background:#E6F7F0;border:2px solid #AEE2CD;border-radius:26px;
+  padding:28px 34px;font-size:36px;font-weight:800;color:#177553;margin-bottom:30px;}
+.done .c{width:52px;height:52px;border-radius:50%;background:#2FB88A;color:#fff;display:flex;
+  align-items:center;justify-content:center;font-size:30px;flex:none;}
+
+/* ---- prompt ---- */
+.prompt{position:absolute;left:42px;right:42px;top:1230px;background:#1C1D24;border-radius:34px;
+  padding:32px 36px;display:flex;align-items:center;gap:22px;box-shadow:0 26px 54px rgba(34,36,44,.3);}
+.prompt .sp{font-size:44px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;}
+.prompt .tx{font-size:38px;color:#fff;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;}
+.prompt .cur{width:5px;height:46px;background:var(--grad);border-radius:3px;}
+.thinking{font-size:30px;font-weight:800;letter-spacing:.2em;color:#A283BB;text-align:center;margin-bottom:30px;}
+
+/* ---- share ---- */
+.shqr{background:#fff;border:2px solid #EBE5DA;border-radius:36px;padding:34px;margin:0 auto 34px;width:520px;
+  box-shadow:0 24px 54px rgba(34,36,44,.12);}
+.shqr svg{display:block;width:452px;height:452px;}
+.shrow{display:flex;align-items:center;gap:22px;background:#fff;border:2px solid #EBE5DA;border-radius:28px;
+  padding:30px 34px;margin-bottom:20px;font-size:38px;font-weight:700;color:#3A3B45;position:relative;overflow:hidden;}
+.shrow .d{width:58px;height:58px;border-radius:17px;background:var(--grad);flex:none;}
+
+/* ---- whatsapp ---- */
+#scWa{background:#D9D0C1;}
+.wahead{height:150px;background:#1E3A30;display:flex;align-items:center;gap:24px;padding:0 42px;color:#fff;}
+.wahead .av{width:80px;height:80px;border-radius:50%;background:var(--grad);flex:none;}
+.wahead .nm{font-size:40px;font-weight:800;}
+.wahead .st{font-size:27px;opacity:.72;font-weight:600;}
+.wabody{position:absolute;left:0;right:0;top:216px;bottom:0;padding:44px 40px;}
+.wb{max-width:88%;border-radius:32px;padding:30px 34px;font-size:38px;line-height:1.35;font-weight:600;}
+.wb.them{background:#fff;color:#22242C;border-top-left-radius:8px;box-shadow:0 8px 22px rgba(0,0,0,.11);}
+.wb.me{background:#22503C;color:#EAF6EF;margin-left:auto;border-top-right-radius:8px;margin-top:28px;
+  box-shadow:0 12px 28px rgba(0,0,0,.18);}
+.wpdf{background:#fff;border-radius:22px;padding:24px;display:flex;align-items:center;gap:22px;margin-bottom:18px;}
+.wpdf .i{width:86px;height:86px;border-radius:18px;background:#E4453C;color:#fff;font-size:27px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex:none;}
+.wpdf .nm{font-size:35px;font-weight:800;color:#22242C;}
+.wpdf .mt{font-size:27px;color:#8A8A95;font-weight:600;margin-top:5px;}
+.wtick{font-size:28px;color:#86DCB0;text-align:right;margin-top:12px;font-weight:700;}
+
+/* ---- dashboard ---- */
+.kpis{display:flex;gap:20px;margin-bottom:44px;}
+.kpi{flex:1;background:#fff;border:2px solid #EBE5DA;border-radius:26px;padding:26px 20px;text-align:center;}
+.kpi .k{font-size:24px;font-weight:800;color:#95928B;letter-spacing:.06em;text-transform:uppercase;}
+.kpi .v{font-size:60px;font-weight:800;letter-spacing:-.03em;margin-top:8px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.chart{display:flex;align-items:flex-end;gap:22px;height:480px;padding-bottom:62px;}
+.chart .b{flex:1;border-radius:18px 18px 6px 6px;position:relative;}
+.chart .b span{position:absolute;bottom:-52px;left:0;right:0;text-align:center;font-size:28px;font-weight:800;color:#A5A199;}
+.csv{margin-top:38px;text-align:center;font-size:36px;font-weight:800;color:#2FB88A;}
+
+/* ---- tap ripple ---- */
+#tap{position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(155,69,166,.10);
+  border:4px solid rgba(155,69,166,.30);z-index:11;opacity:0;pointer-events:none;}
+
+/* ---- flash (match cut) ---- */
+#flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:13;pointer-events:none;}
+
+/* ---- CTA ---- */
+#cta{position:absolute;inset:0;z-index:15;background:#191A20;opacity:0;}
+#cta .g2{position:absolute;inset:0;background:radial-gradient(62% 28% at 84% 6%,rgba(224,96,142,.36),transparent 62%),
+                                  radial-gradient(64% 30% at 6% 95%,rgba(62,147,212,.32),transparent 64%);}
+#cta .wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 80px;z-index:2;}
+#ctaIcon{width:250px;height:250px;border-radius:64px;background:#1F2028;position:relative;overflow:hidden;
+  box-shadow:0 34px 80px rgba(0,0,0,.6);}
+#ctaIcon img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
+#cta h1{font-size:100px;font-weight:800;line-height:1.0;letter-spacing:-.035em;color:#F4F3F8;text-align:center;margin-top:56px;}
+#cta h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+#ctaQr{background:#fff;border-radius:30px;padding:24px;margin-top:56px;box-shadow:0 26px 64px rgba(0,0,0,.46);}
+#ctaQr svg,#ctaQr img{display:block;width:270px;height:270px;}
+#ctaB{background:var(--grad);color:#fff;font-size:40px;font-weight:800;padding:34px 58px;border-radius:999px;
+  margin-top:48px;box-shadow:0 28px 66px rgba(155,69,166,.52);}
+#ctaU{font-size:31px;font-weight:700;color:#8F90A0;margin-top:30px;}
+</style>
+
+<div id="stage">
+  <div id="glow"></div>
+
+  <div id="cap">
+    <div class="capl" id="cap1"><div class="k">Paper forms</div><h1><span class="w">Still </span><span class="w">typing</span><br><span class="w">these </span><span class="w g">up?</span></h1></div>
+    <div class="capl" id="cap2"><div class="k">Snap a photo</div><h1><span class="w">AI </span><span class="w">rebuilds </span><span class="w">it</span><br><span class="w g">in </span><span class="w g">seconds.</span></h1></div>
+    <div class="capl" id="cap3"><div class="k">Or from scratch</div><h1><span class="w">Just </span><span class="w">describe</span><br><span class="w g">what </span><span class="w g">you </span><span class="w g">need.</span></h1></div>
+    <div class="capl" id="cap4"><div class="k">Publish</div><h1><span class="w">Share </span><span class="w">by</span><br><span class="w g">link </span><span class="w g">or </span><span class="w g">QR.</span></h1></div>
+    <div class="capl" id="cap5"><div class="k">Every reply</div><h1><span class="w">PDFs </span><span class="w">land </span><span class="w">on</span><br><span class="w g">WhatsApp.</span></h1></div>
+    <div class="capl" id="cap6"><div class="k">In the app</div><h1><span class="w">Track </span><span class="w">it </span><span class="w">all</span><br><span class="w g">live.</span></h1></div>
+  </div>
+
+  <div id="cam"><div id="device"><div id="screen">
+
+    <!-- SCAN -->
+    <div class="scr" id="scScan">
+      <div class="sbar" style="color:#fff"><span>9:41</span><span class="ic"><i style="background:#5c5e68"></i><i style="background:#5c5e68"></i><i style="background:#5c5e68"></i></span></div>
+      <div class="cam2">
+        <div class="doc">
+          <div class="ph">Customer Feedback</div><div class="prule"></div>
+          <div class="row"><div class="lab">Name</div>
+            <svg width="480" height="42" viewBox="0 0 480 42"><path d="M8 29 C34 8,52 36,76 21 S122 5,146 26 S190 35,212 16 S258 8,282 28 S326 34,344 19" fill="none" stroke="#39497A" stroke-width="6" stroke-linecap="round"/></svg>
+            <div class="line"></div></div>
+          <div class="row"><div class="lab">How was your visit?</div>
+            <div class="cbs"><div class="cb"></div><div class="cb"></div><div class="cb"></div>
+              <svg width="56" height="56" viewBox="0 0 56 56"><path d="M8 30 L21 44 L49 8" fill="none" stroke="#39497A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+          <div class="row"><div class="lab">Comments</div>
+            <svg width="560" height="104" viewBox="0 0 560 104"><path d="M8 27 C36 7,56 38,84 22 S132 5,160 27 S212 37,238 18 S288 8,316 29 S362 35,386 20" fill="none" stroke="#39497A" stroke-width="6" stroke-linecap="round"/><path d="M8 79 C34 59,52 90,80 74 S128 57,156 79 S204 86,228 70" fill="none" stroke="#39497A" stroke-width="6" stroke-linecap="round"/></svg>
+            <div class="line"></div></div>
+          <div class="stain"></div>
+        </div>
+        <div class="brk tl"></div><div class="brk tr"></div><div class="brk bl"></div><div class="brk br"></div>
+        <div id="scanln"></div>
+        <div class="scanlabel" id="scanlabel">HOLD STEADY</div>
+        <div class="shutter" id="shutter"><i></i></div>
+      </div>
+    </div>
+
+    <!-- BUILT -->
+    <div class="scr" id="scBuilt">
+      <div class="sbar"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+      <div class="ahead"><div class="mk"><img src="data:image/png;base64,__MARK__"></div><div class="ti">Customer Feedback</div><div class="av"></div></div>
+      <div class="acont">
+        <div class="done" id="doneChip"><span class="c">✓</span>Built from your photo</div>
+        <div class="fcard" id="bf1"><div><div class="l">Full name</div><div class="v">Short text</div></div></div>
+        <div class="fcard" id="bf2"><div><div class="l">How was your visit?</div><div class="v stars">★★★★★</div></div></div>
+        <div class="fcard" id="bf3"><div><div class="l">Comments</div><div class="v">Long text</div></div></div>
+        <div class="fcard" id="bf4"><div><div class="l">Phone number</div><div class="v">Phone</div></div></div>
+      </div>
+    </div>
+
+    <!-- AI -->
+    <div class="scr" id="scAi">
+      <div class="sbar"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+      <div class="ahead"><div class="mk"><img src="data:image/png;base64,__MARK__"></div><div class="ti">New form</div><div class="av"></div></div>
+      <div class="acont">
+        <div class="thinking" id="think">AI IS WRITING…</div>
+        <div class="fcard" id="af1"><span class="v" style="margin:0">Full name</span><span class="ty">TEXT</span></div>
+        <div class="fcard" id="af2"><span class="v" style="margin:0">Service needed</span><span class="ty">DROPDOWN</span></div>
+        <div class="fcard" id="af3"><span class="v" style="margin:0">Date &amp; time</span><span class="ty">DATE</span></div>
+        <div class="fcard" id="af4"><span class="v" style="margin:0">Phone number</span><span class="ty">PHONE</span></div>
+      </div>
+      <div class="prompt"><span class="sp">✦</span><span class="tx" id="typed"></span><span class="cur" id="cur"></span></div>
+    </div>
+
+    <!-- SHARE -->
+    <div class="scr" id="scShare">
+      <div class="sbar"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+      <div class="ahead"><div class="mk"><img src="data:image/png;base64,__MARK__"></div><div class="ti">Share form</div><div class="av"></div></div>
+      <div class="acont">
+        <div class="shqr" id="shqr">__QR__</div>
+        <div class="shrow" id="sh1"><span class="d"></span>Copy share link</div>
+        <div class="shrow" id="sh2"><span class="d"></span>Download QR code</div>
+        <div class="shrow" id="sh3"><span class="d"></span>Embed on your site</div>
+      </div>
+    </div>
+
+    <!-- WHATSAPP -->
+    <div class="scr" id="scWa">
+      <div class="sbar" style="color:#fff;background:#1E3A30"><span>9:41</span><span class="ic"><i style="background:#6f8f81"></i><i style="background:#6f8f81"></i><i style="background:#6f8f81"></i></span></div>
+      <div class="wahead"><div class="av"></div><div><div class="nm">FormBuilder</div><div class="st">online</div></div></div>
+      <div class="wabody">
+        <div class="wb them" id="wb1">New response — Customer Feedback 🎉</div>
+        <div class="wb me" id="wb2">
+          <div class="wpdf"><div class="i">PDF</div><div><div class="nm">Feedback_Sara-A.pdf</div><div class="mt">128 KB · branded</div></div></div>
+          Forwarded to the team
+          <div class="wtick">09:41 ✓✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASH -->
+    <div class="scr" id="scDash">
+      <div class="sbar"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+      <div class="ahead"><div class="mk"><img src="data:image/png;base64,__MARK__"></div><div class="ti">Responses</div><div class="av"></div></div>
+      <div class="acont">
+        <div class="kpis">
+          <div class="kpi"><div class="k">Total</div><div class="v" id="kv1">0</div></div>
+          <div class="kpi"><div class="k">This week</div><div class="v" id="kv2">0</div></div>
+          <div class="kpi"><div class="k">Rating</div><div class="v" id="kv3">0</div></div>
+        </div>
+        <div class="chart">
+          <div class="b" id="bar0" style="background:#E0608E"><span>M</span></div>
+          <div class="b" id="bar1" style="background:#C2549C"><span>T</span></div>
+          <div class="b" id="bar2" style="background:#A44BA8"><span>W</span></div>
+          <div class="b" id="bar3" style="background:#8659B8"><span>T</span></div>
+          <div class="b" id="bar4" style="background:#5E77C8"><span>F</span></div>
+          <div class="b" id="bar5" style="background:#3E93D4"><span>S</span></div>
+        </div>
+        <div class="csv" id="csv">↓ Export to CSV</div>
+      </div>
+    </div>
+
+    <div id="tap"></div>
+  </div></div></div>
+
+  <div id="flash"></div>
+
+  <div id="cta">
+    <div class="g2"></div>
+    <div class="wrap">
+      <div id="ctaIcon"><img src="data:image/png;base64,__MARK__"></div>
+      <h1 id="ctaH">Free on<br><span class="g">Android.</span></h1>
+      <div id="ctaQr">__DLQR__</div>
+      <div id="ctaB">app.onestoneads.com/download</div>
+      <div id="ctaU">@formbuilder.onestone</div>
+    </div>
+  </div>
+
+  <div id="bar"></div>
+</div>
+
+<script>
+const DUR=30.0, E=document.getElementById.bind(document);
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=p=>1-Math.pow(1-p,3);
+const eIO=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+const eBack=p=>{const c=1.9,s=c+1;return 1+s*Math.pow(p-1,3)+c*Math.pow(p-1,2);};
+const lerp=(a,b,p)=>a+(b-a)*p;
+
+// beats: caption windows
+const B=[[0.0,3.5],[3.5,8.3],[8.3,13.3],[13.3,17.9],[17.9,22.7],[22.7,26.5]];
+// screens: hard cuts (no crossfade) with a scale pop
+const SCR=[['scScan',0.0,3.42],['scBuilt',3.42,8.3],['scAi',8.3,13.3],['scShare',13.3,17.9],['scWa',17.9,22.7],['scDash',22.7,27.1]];
+// camera keyframes per beat: [scaleFrom, scaleTo, yFrom, yTo]
+const CAM=[[1.00,1.042,0,-6],[1.032,1.00,-8,2],[1.00,1.028,0,-6],[1.00,1.045,4,-12],[1.038,1.00,-12,2],[1.00,1.035,0,-8]];
+
+function capWords(el,t,t0){
+  const ws=el.querySelectorAll('.w');
+  ws.forEach((w,i)=>{
+    const p=eBack(seg(t,t0+0.08+i*0.075,t0+0.5+i*0.075));
+    w.style.opacity=clamp(p*1.6).toFixed(3);
+    w.style.transform=`translateY(${((1-clamp(p))*32).toFixed(2)}px)`;
+  });
+}
+
+function render(t){
+  // ---------- captions ----------
+  for(let i=0;i<6;i++){
+    const [a,b]=B[i], el=E('cap'+(i+1));
+    const vis=(t>=a-0.05&&t<b);
+    const out=1-seg(t,b-0.3,b);
+    el.style.opacity=vis?out.toFixed(3):'0';
+    if(vis) capWords(el,t,a);
+    el.style.display=vis?'block':'none';
+  }
+  E('bar').style.width=(clamp(t/DUR)*1080).toFixed(1)+'px';
+
+  // ---------- screens: hard cut + scale pop ----------
+  let beat=0;
+  SCR.forEach(([id,a,b],i)=>{
+    const on=(t>=a&&t<b);
+    const el=E(id);
+    el.style.opacity=on?'1':'0';
+    if(on){ beat=i;
+      const p=eOut(seg(t,a,a+0.34));
+      el.style.transform=`scale(${lerp(1.05,1,p).toFixed(4)})`;
+    }
+  });
+
+  // ---------- camera ----------
+  {
+    const [a,b]=B[Math.min(beat,5)];
+    const k=CAM[Math.min(beat,5)];
+    const p=eIO(seg(t,a,b));
+    const sc=lerp(k[0],k[1],p), yy=lerp(k[2],k[3],p);
+    const dx=Math.sin(t*0.42)*5, dy=Math.cos(t*0.31)*6, rz=Math.sin(t*0.26)*0.22;
+    const off=seg(t,26.3,26.9);   // pull back into CTA
+    E('cam').style.transform=
+      `translate(${(dx).toFixed(2)}px,${(yy+dy+off*70).toFixed(2)}px) scale(${(sc*(1-off*0.09)).toFixed(4)}) rotate(${rz.toFixed(3)}deg)`;
+  }
+
+  // ---------- 1 · scan ----------
+  {
+    const sp=seg(t,0.55,2.75);
+    E('scanln').style.top=(90+sp*1000).toFixed(1)+'px';
+    E('scanln').style.opacity=(t>0.5&&t<2.9)?'1':'0';
+    const pulse=0.45+Math.abs(Math.sin(t*3.1))*0.55;
+    document.querySelectorAll('.brk').forEach(b=>b.style.opacity=(t<2.9?pulse:1).toFixed(2));
+    E('scanlabel').textContent=t<2.85?'HOLD STEADY':'CAPTURED ✓';
+    E('shutter').style.transform=`translateX(-50%) scale(${(t>2.85&&t<3.1?0.86:1).toFixed(3)})`;
+  }
+  // match-cut flash across the scan -> built cut
+  {
+    const f=seg(t,3.24,3.62);
+    E('flash').style.opacity=(f>0&&f<1?Math.pow(1-Math.abs(f-0.42)*2.2,2)*0.94:0).toFixed(3);
+  }
+
+  // ---------- 2 · built ----------
+  {
+    const d=eBack(seg(t,3.75,4.35));
+    E('doneChip').style.opacity=clamp(d*1.5).toFixed(3);
+    E('doneChip').style.transform=`scale(${lerp(0.88,1,clamp(d)).toFixed(4)})`;
+    ['bf1','bf2','bf3','bf4'].forEach((id,i)=>{
+      const q=eBack(seg(t,4.2+i*0.24,4.85+i*0.24));
+      E(id).style.opacity=clamp(q*1.5).toFixed(3);
+      E(id).style.transform=`translateY(${((1-clamp(q))*40).toFixed(2)}px) scale(${lerp(0.96,1,clamp(q)).toFixed(4)})`;
+    });
+  }
+
+  // ---------- 3 · AI ----------
+  {
+    const S='Booking form for my salon';
+    const n=Math.round(clamp(seg(t,8.65,10.35))*S.length);
+    E('typed').textContent=S.slice(0,n);
+    E('cur').style.opacity=(t<10.5?(Math.floor(t*2.4)%2?0.25:1):0).toFixed(2);
+    E('think').style.opacity=(t>10.5?(1-seg(t,11.5,12.0)):0).toFixed(3);
+    ['af1','af2','af3','af4'].forEach((id,i)=>{
+      const q=eBack(seg(t,10.85+i*0.36,11.5+i*0.36));
+      E(id).style.opacity=clamp(q*1.5).toFixed(3);
+      E(id).style.transform=`translateX(${((1-clamp(q))*-44).toFixed(2)}px)`;
+    });
+  }
+
+  // ---------- 4 · share ----------
+  {
+    const q=eBack(seg(t,13.6,14.45));
+    E('shqr').style.opacity=clamp(q*1.5).toFixed(3);
+    E('shqr').style.transform=`scale(${lerp(0.8,1,clamp(q)).toFixed(4)})`;
+    ['sh1','sh2','sh3'].forEach((id,i)=>{
+      const r=eOut(seg(t,14.55+i*0.3,15.1+i*0.3));
+      E(id).style.opacity=r.toFixed(3);
+      E(id).style.transform=`translateX(${((1-r)*44).toFixed(2)}px)`;
+    });
+  }
+
+  // ---------- 5 · whatsapp ----------
+  {
+    const a=eBack(seg(t,18.25,18.95)), b=eBack(seg(t,19.5,20.4));
+    E('wb1').style.opacity=clamp(a*1.5).toFixed(3);
+    E('wb1').style.transform=`translateY(${((1-clamp(a))*30).toFixed(2)}px) scale(${lerp(0.95,1,clamp(a)).toFixed(4)})`;
+    E('wb2').style.opacity=clamp(b*1.5).toFixed(3);
+    E('wb2').style.transform=`translateY(${((1-clamp(b))*36).toFixed(2)}px) scale(${lerp(0.95,1,clamp(b)).toFixed(4)})`;
+  }
+
+  // ---------- 6 · dashboard ----------
+  {
+    const H=[46,62,41,78,92,70];
+    H.forEach((h,i)=>{const q=eOut(seg(t,23.1+i*0.1,24.0+i*0.1));E('bar'+i).style.height=(h*q).toFixed(2)+'%';});
+    const c=eOut(seg(t,23.1,25.0));
+    E('kv1').textContent=Math.round(1284*c).toLocaleString('en-US');
+    E('kv2').textContent='+'+Math.round(312*c);
+    E('kv3').textContent=(4.8*c).toFixed(1);
+    E('csv').style.opacity=eOut(seg(t,25.1,25.7)).toFixed(3);
+  }
+
+  // ---------- tap ripples ----------
+  {
+    const TAPS=[[10.42,462,1300],[14.5,462,1000],[15.35,462,1150]];
+    let o=0,x=0,y=0,s=0;
+    TAPS.forEach(([tt,px,py])=>{
+      const p=seg(t,tt,tt+0.5);
+      if(p>0&&p<1){ o=(1-p)*0.62; s=0.4+p*1.5; x=px; y=py; }
+    });
+    const el=E('tap');
+    el.style.opacity=o.toFixed(3);
+    el.style.left=(x-75)+'px'; el.style.top=(y-75)+'px';
+    el.style.transform=`scale(${s.toFixed(3)})`;
+  }
+
+  // ---------- CTA ----------
+  {
+    const o=seg(t,26.5,27.0);
+    E('cta').style.opacity=o.toFixed(3);
+    const i2=eBack(seg(t,26.9,27.7)), h=eOut(seg(t,27.4,28.1)),
+          q=eBack(seg(t,27.9,28.7)), b=eOut(seg(t,28.5,29.1)), u=eOut(seg(t,29.0,29.5));
+    E('ctaIcon').style.transform=`scale(${lerp(0.68,1,clamp(i2)).toFixed(4)})`;
+    E('ctaIcon').style.opacity=clamp(i2*1.5).toFixed(3);
+    E('ctaH').style.opacity=h.toFixed(3);
+    E('ctaH').style.transform=`translateY(${((1-h)*30).toFixed(2)}px)`;
+    E('ctaQr').style.opacity=clamp(q*1.5).toFixed(3);
+    E('ctaQr').style.transform=`scale(${lerp(0.82,1,clamp(q)).toFixed(4)})`;
+    E('ctaB').style.opacity=b.toFixed(3);
+    E('ctaU').style.opacity=u.toFixed(3);
+  }
+}
+window.render=render; render(0);
+</script>
