@@ -1,0 +1,415 @@
+<meta charset="utf-8">
+<style>
+@font-face{font-family:'Open Sans';font-weight:300 800;font-style:normal;src:url(data:font/woff2;base64,__FONT__) format('woff2');}
+*{box-sizing:border-box;margin:0;padding:0;transition:none!important;animation:none!important;}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#F5EDE0;}
+body{font-family:'Open Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#F5EDE0;color:#22242C;
+  --grad:linear-gradient(112deg,#E0608E 0%,#9B45A6 50%,#3E93D4 100%);}
+#glow{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(52% 30% at 84% 3%,rgba(224,96,142,.20),transparent 64%),
+             radial-gradient(56% 34% at 4% 97%,rgba(62,147,212,.18),transparent 66%);}
+
+/* ---------- caption ---------- */
+#cap{position:absolute;left:80px;right:80px;top:150px;z-index:7;}
+#cap .k{font-size:29px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+#cap h1{font-size:96px;font-weight:800;line-height:1.0;letter-spacing:-.035em;}
+#cap h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.capl{position:absolute;left:0;right:0;top:0;}
+
+/* ---------- brand furniture ---------- */
+#bar{position:absolute;left:0;top:0;height:8px;z-index:9;background:var(--grad);width:0;}
+
+/* ---------- app icon (scene 1) ---------- */
+#iconwrap{position:absolute;left:340px;top:700px;width:400px;height:400px;z-index:6;}
+#icontile{width:400px;height:400px;border-radius:96px;background:#1F2028;position:relative;
+  box-shadow:0 50px 100px rgba(34,36,44,.42);overflow:hidden;}
+#icontile img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
+#aibadge{position:absolute;right:-14px;top:-14px;width:118px;height:118px;border-radius:50%;
+  background:linear-gradient(135deg,#3E93D4,#5AB0F0);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:44px;font-weight:800;letter-spacing:.02em;box-shadow:0 16px 36px rgba(62,147,212,.5);z-index:2;}
+
+/* ---------- the phone ---------- */
+#phone{position:absolute;left:240px;top:530px;width:600px;height:1190px;border-radius:74px;background:#1A1B21;
+  padding:16px;z-index:5;box-shadow:0 60px 110px rgba(34,36,44,.40);}
+#screen{position:relative;width:568px;height:1158px;border-radius:60px;overflow:hidden;background:#FBF9F5;}
+.scr{position:absolute;inset:0;opacity:0;}
+
+/* app chrome */
+.sbar{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 34px;
+  font-size:22px;font-weight:700;color:#22242C;}
+.sbar .ic{display:flex;gap:9px;align-items:center;}
+.sbar .ic i{display:block;width:20px;height:20px;border-radius:4px;background:#C8C4BC;}
+.ahead{height:96px;display:flex;align-items:center;gap:16px;padding:0 30px;border-bottom:2px solid #EFEAE0;}
+.ahead .mk{width:52px;height:52px;border-radius:15px;background:#1F2028;position:relative;overflow:hidden;flex:none;}
+.ahead .mk img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
+.ahead .ti{font-size:30px;font-weight:800;letter-spacing:-.01em;}
+.ahead .av{margin-left:auto;width:52px;height:52px;border-radius:50%;background:var(--grad);}
+
+/* ---- scan screen ---- */
+#scScan{background:#15161B;}
+.cam{position:absolute;left:0;right:0;top:58px;bottom:0;overflow:hidden;background:#0E0F13;}
+.camdoc{position:absolute;left:74px;top:150px;width:420px;height:540px;background:linear-gradient(180deg,#FFFEFA,#F6F1E7);
+  transform:rotate(-3deg);box-shadow:0 30px 60px rgba(0,0,0,.6);padding:36px 32px;}
+.camdoc .ph{font-size:24px;font-weight:800;letter-spacing:.09em;color:#4A4A55;text-transform:uppercase;}
+.camdoc .prule{height:3px;background:#22242C;opacity:.75;margin:10px 0 26px;width:58%;}
+.camdoc .lab{font-size:17px;font-weight:800;color:#8D8A82;letter-spacing:.09em;text-transform:uppercase;margin-bottom:7px;}
+.camdoc .line{height:2px;background:#D8D2C6;margin-top:5px;}
+.camdoc .row{margin-bottom:22px;}
+.camdoc .cbs{display:flex;gap:16px;margin-top:5px;}
+.camdoc .cb{width:28px;height:28px;border:3px solid #C9C2B4;border-radius:5px;}
+.brk{position:absolute;width:74px;height:74px;border:7px solid #E0608E;}
+.brk.tl{left:44px;top:120px;border-right:0;border-bottom:0;border-radius:16px 0 0 0;}
+.brk.tr{right:44px;top:120px;border-left:0;border-bottom:0;border-radius:0 16px 0 0;}
+.brk.bl{left:44px;bottom:250px;border-right:0;border-top:0;border-radius:0 0 0 16px;}
+.brk.br{right:44px;bottom:250px;border-left:0;border-top:0;border-radius:0 0 16px 0;}
+#scanln{position:absolute;left:34px;right:34px;height:130px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(224,96,142,0),rgba(224,96,142,.5),rgba(62,147,212,.85),rgba(62,147,212,0));filter:blur(2px);}
+#camflash{position:absolute;inset:0;background:#fff;opacity:0;}
+.camcta{position:absolute;left:34px;right:34px;bottom:52px;background:rgba(255,255,255,.1);
+  border:2px solid rgba(255,255,255,.22);border-radius:24px;padding:26px;text-align:center;
+  color:#fff;font-size:29px;font-weight:800;backdrop-filter:blur(6px);}
+.camcta.on{background:var(--grad);border-color:transparent;box-shadow:0 16px 40px rgba(155,69,166,.5);}
+
+/* ---- generic app content ---- */
+.acont{position:absolute;left:0;right:0;top:154px;bottom:0;padding:30px;overflow:hidden;}
+.fcard{background:#fff;border:2px solid #EDE7DC;border-radius:22px;padding:20px 24px;margin-bottom:16px;
+  box-shadow:0 8px 20px rgba(34,36,44,.05);}
+.fcard .l{font-size:19px;font-weight:800;color:#96939C;letter-spacing:.06em;text-transform:uppercase;}
+.fcard .v{font-size:30px;font-weight:700;margin-top:4px;}
+.fcard .ty{font-size:20px;font-weight:800;color:#9B7BB4;background:#F3ECF7;padding:7px 14px;border-radius:999px;}
+.fcard.row{display:flex;align-items:center;justify-content:space-between;}
+.done{display:flex;align-items:center;gap:14px;background:#E8F7F0;border:2px solid #B7E5D2;border-radius:20px;
+  padding:20px 24px;font-size:26px;font-weight:800;color:#1E7A57;margin-bottom:22px;}
+.done .c{width:38px;height:38px;border-radius:50%;background:#2FB88A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;flex:none;}
+
+/* ---- AI prompt screen ---- */
+.prompt{position:absolute;left:30px;right:30px;bottom:36px;background:#1F2028;border-radius:28px;padding:24px 26px;
+  display:flex;align-items:center;gap:16px;box-shadow:0 20px 44px rgba(34,36,44,.28);}
+.prompt .sp{font-size:32px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;}
+.prompt .tx{font-size:27px;color:#fff;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;}
+.prompt .cur{width:4px;height:32px;background:var(--grad);border-radius:2px;}
+.thinking{font-size:24px;font-weight:800;letter-spacing:.16em;color:#9B7BB4;text-align:center;margin-bottom:22px;}
+
+/* ---- share screen ---- */
+.shqr{background:#fff;border:2px solid #EDE7DC;border-radius:28px;padding:26px;margin:0 auto 26px;width:340px;
+  box-shadow:0 16px 36px rgba(34,36,44,.1);}
+.shqr svg{display:block;width:288px;height:288px;}
+.shrow{display:flex;align-items:center;gap:16px;background:#fff;border:2px solid #EDE7DC;border-radius:22px;
+  padding:22px 24px;margin-bottom:14px;font-size:27px;font-weight:700;color:#3E3F4A;}
+.shrow .d{width:44px;height:44px;border-radius:13px;background:var(--grad);flex:none;}
+
+/* ---- whatsapp screen ---- */
+#scWa{background:#DCD3C4;}
+.wahead{height:110px;background:#1F3B31;display:flex;align-items:center;gap:18px;padding:0 28px;color:#fff;}
+.wahead .av{width:58px;height:58px;border-radius:50%;background:var(--grad);flex:none;}
+.wahead .nm{font-size:28px;font-weight:800;}
+.wahead .st{font-size:20px;opacity:.7;font-weight:600;}
+.wabody{position:absolute;left:0;right:0;top:110px;bottom:0;padding:34px 28px;}
+.wb{max-width:86%;border-radius:24px;padding:22px 26px;font-size:27px;line-height:1.4;font-weight:600;}
+.wb.them{background:#fff;color:#22242C;border-top-left-radius:6px;box-shadow:0 6px 16px rgba(0,0,0,.1);}
+.wb.me{background:#25543F;color:#EAF6EF;margin-left:auto;border-top-right-radius:6px;margin-top:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,.16);}
+.wpdf{background:#fff;border-radius:16px;padding:18px;display:flex;align-items:center;gap:16px;margin-bottom:14px;}
+.wpdf .i{width:60px;height:60px;border-radius:13px;background:#E4453C;color:#fff;font-size:19px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex:none;}
+.wpdf .nm{font-size:25px;font-weight:800;color:#22242C;}
+.wpdf .mt{font-size:20px;color:#8A8A95;font-weight:600;margin-top:3px;}
+.wtick{font-size:21px;color:#7FD4A8;text-align:right;margin-top:8px;font-weight:700;}
+
+/* ---- dashboard screen ---- */
+.kpis{display:flex;gap:14px;margin-bottom:30px;}
+.kpi{flex:1;background:#fff;border:2px solid #EDE7DC;border-radius:20px;padding:18px 16px;text-align:center;}
+.kpi .k{font-size:17px;font-weight:800;color:#95928B;letter-spacing:.05em;text-transform:uppercase;}
+.kpi .v{font-size:40px;font-weight:800;letter-spacing:-.03em;margin-top:5px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.chart{display:flex;align-items:flex-end;gap:16px;height:330px;padding-bottom:46px;}
+.chart .b{flex:1;border-radius:12px 12px 5px 5px;position:relative;}
+.chart .b span{position:absolute;bottom:-40px;left:0;right:0;text-align:center;font-size:20px;font-weight:800;color:#A5A199;}
+.csv{margin-top:26px;text-align:center;font-size:25px;font-weight:800;color:#2FB88A;}
+
+/* ---- CTA scene ---- */
+#cta{position:absolute;inset:0;z-index:10;background:#1B1C22;opacity:0;}
+#cta .g2{position:absolute;inset:0;background:radial-gradient(64% 30% at 86% 5%,rgba(224,96,142,.34),transparent 62%),
+                                  radial-gradient(66% 32% at 6% 96%,rgba(62,147,212,.30),transparent 64%);}
+#cta .wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 84px;z-index:2;}
+#ctaIcon{width:220px;height:220px;border-radius:56px;background:#1F2028;position:relative;overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.55);}
+#ctaIcon img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
+#cta h1{font-size:92px;font-weight:800;line-height:1.0;letter-spacing:-.035em;color:#F4F3F8;text-align:center;margin-top:52px;}
+#cta h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+#ctaQr{background:#fff;border-radius:28px;padding:22px;margin-top:52px;box-shadow:0 24px 60px rgba(0,0,0,.4);}
+#ctaQr svg,#ctaQr img{display:block;width:250px;height:250px;}
+#cta .btn{background:var(--grad);color:#fff;font-size:40px;font-weight:800;padding:32px 60px;border-radius:999px;
+  margin-top:44px;box-shadow:0 26px 62px rgba(155,69,166,.5);}
+#cta .url{font-size:32px;font-weight:700;color:#8F90A0;margin-top:32px;}
+</style>
+
+<div id="stage">
+  <div id="glow"></div>
+
+  <!-- captions (one per beat) -->
+  <div id="cap">
+    <div class="capl" id="cap1"><div class="k">Android · free plan</div><h1>The whole builder.<br><span class="g">On your phone.</span></h1></div>
+    <div class="capl" id="cap2"><div class="k">Step one</div><h1>Snap a<br><span class="g">paper form.</span></h1></div>
+    <div class="capl" id="cap3"><div class="k">Or start empty</div><h1>Describe it.<br><span class="g">AI writes it.</span></h1></div>
+    <div class="capl" id="cap4"><div class="k">Publish</div><h1>Share by<br><span class="g">link or QR.</span></h1></div>
+    <div class="capl" id="cap5"><div class="k">Every reply</div><h1>PDFs land on<br><span class="g">WhatsApp.</span></h1></div>
+    <div class="capl" id="cap6"><div class="k">In the app</div><h1>Track it all<br><span class="g">live.</span></h1></div>
+  </div>
+
+  <!-- app icon intro -->
+  <div id="iconwrap">
+    <div id="icontile"><img src="data:image/png;base64,__MARK__"></div>
+    <div id="aibadge">AI</div>
+  </div>
+
+  <!-- the phone -->
+  <div id="phone"><div id="screen">
+
+    <!-- SCAN -->
+    <div class="scr" id="scScan">
+      <div class="sbar" style="color:#fff"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+      <div class="cam">
+        <div class="camdoc">
+          <div class="ph">Customer Feedback</div><div class="prule"></div>
+          <div class="row"><div class="lab">Name</div>
+            <svg width="300" height="26" viewBox="0 0 300 26"><path d="M5 18 C20 5,31 23,45 13 S70 3,85 16 S110 22,123 10 S148 5,162 17 S186 21,196 12" fill="none" stroke="#3B4B7A" stroke-width="4" stroke-linecap="round"/></svg>
+            <div class="line"></div></div>
+          <div class="row"><div class="lab">How was your visit?</div>
+            <div class="cbs"><div class="cb"></div><div class="cb"></div><div class="cb"></div>
+              <svg width="34" height="34" viewBox="0 0 34 34"><path d="M5 18 L13 27 L30 5" fill="none" stroke="#3B4B7A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+          <div class="row"><div class="lab">Comments</div>
+            <svg width="330" height="62" viewBox="0 0 330 62"><path d="M5 16 C22 5,33 23,50 13 S79 3,96 16 S126 23,142 11 S172 5,189 17 S216 21,231 12" fill="none" stroke="#3B4B7A" stroke-width="4" stroke-linecap="round"/><path d="M5 47 C20 36,31 54,48 44 S75 34,92 47 S120 52,135 42" fill="none" stroke="#3B4B7A" stroke-width="4" stroke-linecap="round"/></svg>
+            <div class="line"></div></div>
+        </div>
+        <div class="brk tl"></div><div class="brk tr"></div><div class="brk bl"></div><div class="brk br"></div>
+        <div id="scanln"></div><div id="camflash"></div>
+        <div class="camcta" id="camcta">Scan form</div>
+      </div>
+    </div>
+
+    <!-- BUILT (result of scan) -->
+    <div class="scr" id="scBuilt">
+      <div class="sbar"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+      <div class="ahead"><div class="mk"><img src="data:image/png;base64,__MARK__"></div><div class="ti">Customer Feedback</div><div class="av"></div></div>
+      <div class="acont">
+        <div class="done" id="doneChip"><span class="c">✓</span>Form built from your photo</div>
+        <div class="fcard" id="bf1"><div class="l">Full name</div><div class="v">Short text</div></div>
+        <div class="fcard" id="bf2"><div class="l">How was your visit?</div><div class="v">★★★★★ Rating</div></div>
+        <div class="fcard" id="bf3"><div class="l">Comments</div><div class="v">Long text</div></div>
+        <div class="fcard" id="bf4"><div class="l">Phone number</div><div class="v">Phone</div></div>
+      </div>
+    </div>
+
+    <!-- AI PROMPT -->
+    <div class="scr" id="scAi">
+      <div class="sbar"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+      <div class="ahead"><div class="mk"><img src="data:image/png;base64,__MARK__"></div><div class="ti">New form</div><div class="av"></div></div>
+      <div class="acont">
+        <div class="thinking" id="think">AI IS BUILDING…</div>
+        <div class="fcard row" id="af1"><span class="v" style="margin:0">Full name</span><span class="ty">TEXT</span></div>
+        <div class="fcard row" id="af2"><span class="v" style="margin:0">Service needed</span><span class="ty">DROPDOWN</span></div>
+        <div class="fcard row" id="af3"><span class="v" style="margin:0">Date &amp; time</span><span class="ty">DATE</span></div>
+        <div class="fcard row" id="af4"><span class="v" style="margin:0">Phone number</span><span class="ty">PHONE</span></div>
+      </div>
+      <div class="prompt"><span class="sp">✦</span><span class="tx" id="typed"></span><span class="cur" id="cur"></span></div>
+    </div>
+
+    <!-- SHARE -->
+    <div class="scr" id="scShare">
+      <div class="sbar"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+      <div class="ahead"><div class="mk"><img src="data:image/png;base64,__MARK__"></div><div class="ti">Share form</div><div class="av"></div></div>
+      <div class="acont">
+        <div class="shqr" id="shqr">__QR__</div>
+        <div class="shrow" id="sh1"><span class="d"></span>Copy share link</div>
+        <div class="shrow" id="sh2"><span class="d"></span>Download QR code</div>
+        <div class="shrow" id="sh3"><span class="d"></span>Embed on your site</div>
+      </div>
+    </div>
+
+    <!-- WHATSAPP -->
+    <div class="scr" id="scWa">
+      <div class="sbar" style="color:#fff;background:#1F3B31"><span>9:41</span><span class="ic"><i style="background:#7c9c8f"></i><i style="background:#7c9c8f"></i><i style="background:#7c9c8f"></i></span></div>
+      <div class="wahead"><div class="av"></div><div><div class="nm">FormBuilder</div><div class="st">online</div></div></div>
+      <div class="wabody">
+        <div class="wb them" id="wb1">New response — Customer Feedback 🎉</div>
+        <div class="wb me" id="wb2">
+          <div class="wpdf"><div class="i">PDF</div><div><div class="nm">Feedback_Sara-A.pdf</div><div class="mt">128 KB · branded</div></div></div>
+          Forwarded to the team
+          <div class="wtick">09:41 ✓✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="scr" id="scDash">
+      <div class="sbar"><span>9:41</span><span class="ic"><i></i><i></i><i></i></span></div>
+      <div class="ahead"><div class="mk"><img src="data:image/png;base64,__MARK__"></div><div class="ti">Responses</div><div class="av"></div></div>
+      <div class="acont">
+        <div class="kpis">
+          <div class="kpi"><div class="k">Total</div><div class="v" id="kv1">0</div></div>
+          <div class="kpi"><div class="k">This week</div><div class="v" id="kv2">0</div></div>
+          <div class="kpi"><div class="k">Rating</div><div class="v" id="kv3">0</div></div>
+        </div>
+        <div class="chart">
+          <div class="b" id="bar0" style="background:#E0608E"><span>M</span></div>
+          <div class="b" id="bar1" style="background:#C2549C"><span>T</span></div>
+          <div class="b" id="bar2" style="background:#A44BA8"><span>W</span></div>
+          <div class="b" id="bar3" style="background:#8659B8"><span>T</span></div>
+          <div class="b" id="bar4" style="background:#5E77C8"><span>F</span></div>
+          <div class="b" id="bar5" style="background:#3E93D4"><span>S</span></div>
+        </div>
+        <div class="csv" id="csv">↓ Export to CSV</div>
+      </div>
+    </div>
+
+  </div></div>
+
+  <!-- CTA -->
+  <div id="cta">
+    <div class="g2"></div>
+    <div class="wrap">
+      <div id="ctaIcon"><img src="data:image/png;base64,__MARK__"></div>
+      <h1 id="ctaH">Get it free on<br><span class="g">Android.</span></h1>
+      <div id="ctaQr">__DLQR__</div>
+      <div class="btn" id="ctaB">app.onestoneads.com/download</div>
+      <div class="url" id="ctaU">@formbuilder.onestone · free plan forever</div>
+    </div>
+  </div>
+
+  <div id="bar"></div>
+</div>
+
+<script>
+const DUR=35.0, E=document.getElementById.bind(document);
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=p=>1-Math.pow(1-p,3);
+const eBack=p=>{const c=1.70158,s=c+1;return 1+s*Math.pow(p-1,3)+c*Math.pow(p-1,2);};
+const win=(t,a,b,f=0.4)=>Math.min(clamp((t-a)/f),1-clamp((t-(b-f))/f));
+
+// beat windows
+const B=[[0.0,5.0],[4.6,10.6],[10.2,16.4],[16.0,21.8],[21.4,27.6],[27.2,31.6]];
+const CTA=[31.2,35.0];
+
+function render(t){
+  // captions
+  for(let i=0;i<6;i++){
+    const o=win(t,B[i][0],B[i][1],0.38);
+    const el=E('cap'+(i+1));
+    el.style.opacity=o.toFixed(4);
+    el.style.transform=`translateY(${((1-eOut(clamp((t-B[i][0])/0.5)))*26).toFixed(2)}px)`;
+  }
+  E('bar').style.width=(clamp(t/DUR)*1080).toFixed(1)+'px';
+
+  // ---- scene 1: app icon, then it shrinks away as the phone rises
+  {
+    const inn=eBack(seg(t,0.15,1.15));
+    const out=seg(t,3.9,4.9);
+    const fl=Math.sin(t*1.1)*7;
+    const sc=(0.6+clamp(inn)*0.4)*(1-out*0.45);
+    E('iconwrap').style.transform=`translateY(${(fl-out*140).toFixed(2)}px) scale(${sc.toFixed(4)}) rotate(${((1-clamp(inn))*-9).toFixed(2)}deg)`;
+    E('iconwrap').style.opacity=(clamp(inn*1.4)*(1-out)).toFixed(3);
+    const bb=eBack(seg(t,0.75,1.5));
+    E('aibadge').style.transform=`scale(${clamp(bb).toFixed(4)})`;
+  }
+
+  // ---- phone container: rises at 4.2s, holds, exits at CTA
+  {
+    const up=eOut(seg(t,4.1,5.3));
+    const off=seg(t,31.2,31.8);
+    const drift=Math.sin((t-4)*0.5)*5;
+    E('phone').style.opacity=(up*(1-off)).toFixed(3);
+    E('phone').style.transform=`translateY(${((1-up)*220+drift-off*90).toFixed(2)}px) scale(${(0.94+up*0.06).toFixed(4)})`;
+  }
+
+  // ---- screens inside the phone
+  const S={scScan:[4.4,8.0],scBuilt:[7.8,10.6],scAi:[10.4,16.4],scShare:[16.2,21.8],scWa:[21.6,27.6],scDash:[27.4,31.5]};
+  for(const k in S) E(k).style.opacity=win(t,S[k][0],S[k][1],0.30).toFixed(4);
+
+  // scan animation
+  {
+    const p=seg(t,5.0,7.0);
+    E('scanln').style.top=(60+p*640).toFixed(1)+'px';
+    E('scanln').style.opacity=(t>4.9&&t<7.15)?'1':'0';
+    const f=seg(t,7.05,7.35);
+    E('camflash').style.opacity=(f>0&&f<1?(1-Math.abs(f-.5)*2)*0.9:0).toFixed(3);
+    const on=t>7.0;
+    E('camcta').className='camcta'+(on?' on':'');
+    E('camcta').textContent=on?'Form created ✓':'Scan form';
+    const brk=0.55+Math.abs(Math.sin(t*2.4))*0.45;
+    document.querySelectorAll('.brk').forEach(b=>b.style.opacity=(t<7.0?brk:0.25).toFixed(2));
+  }
+  // built screen stagger
+  {
+    const d=eBack(seg(t,8.1,8.7));
+    E('doneChip').style.opacity=clamp(d*1.4).toFixed(3);
+    E('doneChip').style.transform=`scale(${(0.9+clamp(d)*0.1).toFixed(4)})`;
+    ['bf1','bf2','bf3','bf4'].forEach((id,i)=>{
+      const q=eOut(seg(t,8.5+i*0.22,9.1+i*0.22));
+      E(id).style.opacity=q.toFixed(3);
+      E(id).style.transform=`translateY(${((1-q)*26).toFixed(2)}px)`;
+    });
+  }
+  // AI screen
+  {
+    const S2='Booking form for my salon';
+    const n=Math.round(clamp(seg(t,10.8,12.7))*S2.length);
+    E('typed').textContent=S2.slice(0,n);
+    E('cur').style.opacity=(t<12.9?(Math.floor(t*2.2)%2?0.25:1):0).toFixed(2);
+    E('think').style.opacity=(t>12.9?(1-seg(t,14.0,14.5)):0).toFixed(3);
+    ['af1','af2','af3','af4'].forEach((id,i)=>{
+      const q=eBack(seg(t,13.3+i*0.42,13.95+i*0.42));
+      E(id).style.opacity=clamp(q*1.5).toFixed(3);
+      E(id).style.transform=`translateX(${((1-q)*-34).toFixed(2)}px)`;
+    });
+  }
+  // share screen
+  {
+    const q=eBack(seg(t,16.6,17.5));
+    E('shqr').style.opacity=clamp(q*1.5).toFixed(3);
+    E('shqr').style.transform=`scale(${(0.78+clamp(q)*0.22).toFixed(4)})`;
+    ['sh1','sh2','sh3'].forEach((id,i)=>{
+      const r=eOut(seg(t,18.1+i*0.36,18.7+i*0.36));
+      E(id).style.opacity=r.toFixed(3);
+      E(id).style.transform=`translateX(${((1-r)*40).toFixed(2)}px)`;
+    });
+  }
+  // whatsapp screen
+  {
+    const a=eBack(seg(t,22.2,23.0)), b=eBack(seg(t,23.6,24.6));
+    E('wb1').style.opacity=clamp(a*1.4).toFixed(3);
+    E('wb1').style.transform=`translateY(${((1-a)*26).toFixed(2)}px)`;
+    E('wb2').style.opacity=clamp(b*1.4).toFixed(3);
+    E('wb2').style.transform=`translateY(${((1-b)*30).toFixed(2)}px)`;
+  }
+  // dashboard
+  {
+    const H=[46,62,41,78,92,70];
+    H.forEach((h,i)=>{const q=eOut(seg(t,27.9+i*0.11,28.9+i*0.11));E('bar'+i).style.height=(h*q).toFixed(2)+'%';});
+    const c=eOut(seg(t,27.9,29.9));
+    E('kv1').textContent=Math.round(1284*c).toLocaleString('en-US');
+    E('kv2').textContent='+'+Math.round(312*c);
+    E('kv3').textContent=(4.8*c).toFixed(1);
+    E('csv').style.opacity=eOut(seg(t,30.0,30.6)).toFixed(3);
+  }
+
+  // ---- CTA
+  {
+    const o=seg(t,31.2,31.8);
+    E('cta').style.opacity=o.toFixed(3);
+    const i2=eBack(seg(t,31.7,32.5)), h=eOut(seg(t,32.2,32.9)), q=eBack(seg(t,32.7,33.5)), b=eOut(seg(t,33.3,33.9));
+    E('ctaIcon').style.transform=`scale(${(0.7+clamp(i2)*0.3).toFixed(4)})`;
+    E('ctaIcon').style.opacity=clamp(i2*1.5).toFixed(3);
+    E('ctaH').style.opacity=h.toFixed(3);
+    E('ctaH').style.transform=`translateY(${((1-h)*26).toFixed(2)}px)`;
+    E('ctaQr').style.opacity=clamp(q*1.5).toFixed(3);
+    E('ctaQr').style.transform=`scale(${(0.84+clamp(q)*0.16).toFixed(4)})`;
+    E('ctaB').style.opacity=b.toFixed(3);
+    E('ctaU').style.opacity=eOut(seg(t,33.8,34.4)).toFixed(3);
+  }
+}
+window.render=render; render(0);
+</script>
